@@ -1,0 +1,12 @@
+{
+	"id": "mcd",
+	"type": "symbol",
+	"source": {},
+	"metadata":
+	{
+		"elements": ["mcd1", "mcd2"],
+		"parentLayers": [],
+		"childLayers": ["mcd-roads", "mcd-stations"],
+		"popupHtml": ""
+	}
+}

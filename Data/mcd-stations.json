@@ -1,0 +1,86 @@
+{
+	"id": "mcd-stations",
+	"type": "symbol",
+	"metadata":{
+		"elements": [],
+		"parentLayers": ["mcds"],
+		"childLayers": [],
+		"popupHtml": "<div><span>This is <span data-bind='text: name'></span></span></div>",
+	}
+	"source": {
+		"type": "geojson",
+		"data": {
+			"type": "FeatureCollection",
+			"features": [
+				{
+					"geometry": {
+						"coordinates": [
+						  37.51075877503524,
+						  55.80602449730338
+						],
+						"type": "Point"
+					},
+					"type": "Feature",
+					"properties": {
+						"year": "2010",
+						"ownerLayer": "mcds",
+						"ownerElement": "mcd1",
+						"popupData": {"name": "mcd1Station Station1"}
+					}
+				},{
+					"geometry": {
+						"coordinates": [
+							37.47707180009223,
+							55.7749305650959
+						],
+						"type": "Point"
+					},
+					"type": "Feature",
+					"properties": {
+						"year": "2010",
+						"ownerLayer": "mcds",
+						"ownerElement": "mcd1",
+						"popupData": {"name": "mcd1Station Station2"}
+					}
+				},{
+					"geometry": {
+						"coordinates": [
+						  37.53765953509131,
+						  55.7659945672583
+						],
+						"type": "Point"
+					},
+					"type": "Feature",
+					"properties": {
+						"year": "2010",
+						"ownerLayer": "mcds",
+						"ownerElement": "mcd1",
+						"popupData": {"name": "mcd1Station Station3"}
+					}
+				},{
+					"geometry": {
+						"coordinates": [
+						  37.56581810974279,
+						  55.785564268604986
+						],
+						"type": "Point"
+					},
+					"type": "Feature",
+					"properties": {
+						"year": "2010",
+						"ownerLayer": "mcds",
+						"ownerElement": "mcd1",
+						"popupData": {"name": "mcd1Station Station4"}
+					}
+				}
+			]
+		}
+	},
+	"layout": {
+		"icon-image": "{icon}-15",
+		"text-field": "Station",
+		"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+		"text-offset": [0, 0.6],
+		"text-anchor": "top"
+	}
+}
