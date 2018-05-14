@@ -7,6 +7,7 @@
 		"childLayers": ["mcd-road-speedInfos"],
 		"popupHtml": "<div><span>This is <span data-bind='text: name'></span></span></div>"
 	},
+	"minzoom": 10,
 	"source":{
 		"type": "geojson",
 		"data":{

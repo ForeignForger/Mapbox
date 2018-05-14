@@ -5,8 +5,9 @@
 		"elements": [],
 		"parentLayers": ["mcds"],
 		"childLayers": [],
-		"popupHtml": "<div><span>This is <span data-bind='text: name'></span></span></div>",
-	}
+		"popupHtml": "<div><span>This is <span data-bind='text: name'></span></span></div>"
+	},
+	"minzoom": 10,
 	"source": {
 		"type": "geojson",
 		"data": {
@@ -77,7 +78,7 @@
 		}
 	},
 	"layout": {
-		"icon-image": "{icon}-15",
+		"icon-image": "marker-red",
 		"text-field": "Station",
 		"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
 		"text-offset": [0, 0.6],

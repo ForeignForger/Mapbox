@@ -5,8 +5,8 @@ function Mapbox(){
 		containerId: 'mapbox',
 		layersJsonContainerId: 'mapbox-layers-json',
 		style: 'mapbox://styles/groond/cjguv5eo300352smn4qyyf1l3',
-		zoom: 3,
-		center: [50, 50],
+		zoom: 9,
+		center: [37.618423, 55.751244],
 	};
 	self.controls = {};
 	

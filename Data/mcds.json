@@ -1,7 +1,13 @@
 {
 	"id": "mcd",
 	"type": "symbol",
-	"source": {},
+	"source": {
+		"type": "geojson",
+		"data": {
+			"type": "FeatureCollection",
+			"features": []
+		}
+	},
 	"metadata":
 	{
 		"elements": ["mcd1", "mcd2"],
