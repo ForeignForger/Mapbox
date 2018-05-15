@@ -14,11 +14,16 @@
 <script src='js/Layers.js'></script>
 <script src='js/Controls.js'></script>
 <script src='js/Mapbox.js'></script>
-<script type="text/html" id="mapbox-main-control-script">
-</script>
 <script type="application/json" id="mapbox-layers-json">
 {
-	"keys": ["mcd"],
+	"info": [
+		{
+			"layerId": "mcd",
+			"controlId": "main-control",
+			"position": "top-right",
+			"controlHtml": "<div>LOLOLOLOL</div>"
+		}
+	],
 	"layers":[
 		{
 			"id": "mcd",
@@ -46,7 +51,7 @@
 				"elements": [],
 				"parentLayers": ["mcds"],
 				"childLayers": ["mcd-road-speedInfos"],
-				"popupHtml": "<div><span>This is <span data-bind='text: name'></span></span></div>"
+				"popupHtml": "<span>This is <span data-bind='text: name'></span></span>"
 			},
 			"source":{
 				"type": "geojson",

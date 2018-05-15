@@ -5,10 +5,9 @@ function Mapbox(){
 		containerId: 'mapbox',
 		layersJsonContainerId: 'mapbox-layers-json',
 		style: 'mapbox://styles/groond/cjguv5eo300352smn4qyyf1l3',
-		zoom: 9,
+		zoom: 10,
 		center: [37.618423, 55.751244],
 	};
-	self.controls = {};
 	
 
 	self.run = function run(settings){
@@ -44,24 +43,20 @@ function Mapbox(){
 	
 	function init(){
 		if(self.map){
-			var keys = addLayers();
-			//addControls(keys); переписать логику инициализации контроллеров
+			var info = addLayers();
+			addControls(info); //переписать логику инициализации контроллеров
 			//ko.applyBindings(self.controls);
 		}
 	}
 	
 	function addLayers(){
 		var layerService = new LayerService(self.map);
-		var keys = layerService.addLayers(self.settings.layersJsonContainerId);
-		return keys;
+		var info = layerService.addLayers(self.settings.layersJsonContainerId);
+		return info;
 	}
 	
-	function addControls(){
-		self.controls = getControls(self.settings.containerId);
-		var cntrls = self.controls();
-		 
-		for (var i = 0; cntrls && i < cntrls.length; i++){
-			self.map.addControl(cntrls[i], cntrls[i].position);
-		}
+	function addControls(info){
+		var controlService = new ControlService(self.map, info);
+		controlService.addControls();
 	}
 }
