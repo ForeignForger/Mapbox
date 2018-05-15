@@ -1,0 +1,12 @@
+<div class='control-panel top-right'>
+	<div class='toggle'data-bind='click: toggleControlPanel("control-area-id"), css: { open: IsOpen() }'>
+	</div>
+	<div class='control-area' id='control-area-id'>
+		<select class='select-control' data-bind='foreach: controls'>
+		  <option class='control-switch' data-bind='text: name, click: selectControl()'></option>
+		</select>
+		<div class='control' data-bind='value: selectedControl'>
+		<p data-bind="text: controlId"></p>
+		<div>
+	</div>
+</div>

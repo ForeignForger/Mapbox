@@ -6,8 +6,8 @@ function ControlService(map, info){
 	self.controlPanels = {};
 	
 	self.addControls = function(){
-		$.each(self.info, function(index, value){
-			var control = new Control(value); //инициализация контрола, добавление на карту, аплай биндинг
+		$.each(self.info.controls, function(index, controlInfo){
+			var control = new Control(controlInfo); //инициализация контрола, добавление на карту, аплай биндинг
 		});
 		
 	}

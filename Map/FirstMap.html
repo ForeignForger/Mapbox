@@ -16,14 +16,21 @@
 <script src='js/Mapbox.js'></script>
 <script type="application/json" id="mapbox-layers-json">
 {
-	"info": [
-		{
-			"layerId": "mcd",
-			"controlId": "main-control",
-			"position": "top-right",
-			"controlHtml": "<div>LOLOLOLOL</div>"
+	"info": {
+		"controlPanels":{
+			"top-right": {
+				"panelHtml": "<div class='control-panel top-right'><div class='toggle'data-bind='click: toggleControlPanel(\"control-area-id\"), css: { open: IsOpen() }'></div><div class='control-area' id='control-area-id'><select class='select-control' data-bind='foreach: controls'><option class='control-switch' data-bind='text: name, click: selectControl()'></option></select><div class='control' data-bind='value: selectedControl'><p data-bind='text: controlId'></p><div></div></div>"
+			},
+			"controls":	[
+			{
+				"layerId": "mcd",
+				"controlId": "main-control",
+				"controlHtml": "<div>LOLOLOLOL</div>"
+			}
+		]
 		}
-	],
+
+	},
 	"layers":[
 		{
 			"id": "mcd",
