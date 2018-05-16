@@ -1,76 +1,65 @@
 //Создадим панель контроллеров, каждый из контроллеров в отдельной вкладке, так же есть кнопка скрывающаяя все контроллеры
+//для mapbox control-panel это и есть контрол. Для нас входящие control которые имеют специфическую функциональность
 function ControlService(map, info){
 	var self = this;
 	self.map = map;
 	self.info = info;
 	self.controlPanels = {};
+	self.controlFunctionalityObjects = {};
+	
+	self.controlFunctionalityObjects["main-control"] = function(){
+		this.sayHello = function(){
+			console.log("control " + this.controlId() + " want to say hello");
+		};
+	};
 	
 	self.addControls = function(){
-		$.each(self.info.controls, function(index, controlInfo){
-			var control = new Control(controlInfo); //инициализация контрола, добавление на карту, аплай биндинг
+		$.each(self.info.controlPanels, function(index, controlPanel){
+			if (!self.controlPanels[controlPanel.position]){
+					self.controlPanels[controlPanel.position] = new ControlPanel(controlPanel);
+					$.each(controlPanel.controls, function (index, controlInfo){
+						var defaultControl = new Control(controlInfo);
+						var functionalityObject = new self.controlFunctionalityObjects[defaultControl.controlId()]();
+						var control = $.extend(true, {}, defaultControl, functionalityObject)
+						control.sayHello();
+						self.controlPanels[controlPanel.position].controls.push(control);
+					});
+					//инициализация контрола, добавление на карту, аплай биндинг
+			}
 		});
 		
 	}
 	
-	function Control(controlElementId, obs, position)
-	{
-		this.self = this;
-		this.controlId = ko.observable(controlElementId);
-		this.position = position;
-		this.IsOpen = ko.observable(false);
-		/* убрать от сюда. 
-		this.openCloseControl = function (blockId){
-			var side; //какой параметр менять
-			if (this.position == 'top-right' || this.position == 'bottom-right' ){
-				side = 'left'
-			}
-			else{
-				side = 'right';
-			}
-
-			if (this.IsOpen()){
-				var width = $('#' + blockId).css('width');
-				$('#' + blockId).css(side, width);
-				this.IsOpen(false);
-			}
-			else {
-				$('#' + blockId).css(side, 0);
-				this.IsOpen(true);
-			}
-		};
-		*/
-		this.ToggleLayer = function(layerId){
-			
-			if(this._map && this._map.getLayer(layerId)){
-				var visibility = this._map.getLayoutProperty(layerId, 'visibility');
-
-				if (visibility == 'visible') {
-					this._map.setLayoutProperty(layerId, 'visibility', 'none');
-				} else {
-					this._map.setLayoutProperty(layerId, 'visibility', 'visible');
-				}
-				
-				this._map.setLayoutProperty(layerId, 'visibility', this._map.getLayoutProperty(layerId, 'visibility'));
-			}
-		}
-		
+	function ControlPanel(info){
+		var self = this;
+		self.panelHtml = info.PanelHtml;
+		self.position = info.position;
+		self.controls = [];
 	}
 	
-	Control.prototype.onAdd = function (map){
+	ControlPanel.prototype.onAdd = function (map){
 		this._map = map;
-		var $container = $(document.createElement('div'));
-		$container.attr('id', this.controlId());
-		$container.attr('data-bind', 'template: { data: ' + this.obs + ', name: "' + this.controlId() + '-script' + '"}');
-		this._container = $container[0];
-		this._container.className = 'mapboxgl-ctrl';
+		//создание контроллера
 		return this._container;
 	}
+	
 
-	Control.prototype.onRemove = function() {
+	ControlPanel.prototype.onRemove = function() {
 		this._container.parentNode.removeChild(this._container);
 		this._map = undefined;
 	}
+	function Control(controlInfo)
+	{
+		var self = this;
+		self.controlId = ko.observable(controlInfo.controlId);
+		self.LayerId = ko.observable(controlInfo.controlId);
+		self.IsOpen = ko.observable(false);		
+	}
+	/*
 
+	controlPanel теперь контрол для mapbox, (control, для него это часть его функциональности)
+	*/
+	
 }
 
 
