@@ -5,13 +5,13 @@ function ControlPanelService(map, info){
 	self._map = map;
 	self.info = info;
 	self.controlPanels = {};
-	self.controlService = new ControlService();
+	self.controlService = new ControlService(self._map);
 	
 	self.addControlPanelsAtMap = function(){
 		initControlPanels();
 		$.each(self.controlPanels, function(index, controlPanel){
 			self._map.addControl(controlPanel);
-			ko.applyBindings(controlPanel);
+			ko.applyBindings(controlPanel, $('#' + controlPanel.controlPanelId)[0]);
 			controlPanel.selectControl();
 		});
 	}

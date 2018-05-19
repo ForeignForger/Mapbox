@@ -1,0 +1,19 @@
+{
+	"info":{
+		"controlPanels":[
+				{
+					"position": "top-right",
+					"panelHtml": "<div></div>",
+					"controls":	[
+						{
+							"layerId": "mcd",
+							"controlId": "main-control",
+							"controlHtml": "<div></div>",
+							"controlName": "Главный котроллер"
+						}
+					]
+				}
+			]
+	},
+	"layers":[]
+}

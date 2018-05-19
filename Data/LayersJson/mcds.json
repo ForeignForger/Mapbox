@@ -10,9 +10,19 @@
 	},
 	"metadata":
 	{
-		"elements": ["mcd1", "mcd2"],
+		"elements": [
+			{
+				"elementId": "mcd1",
+				"elementName": "Старый МЦД"
+			}, 
+			{
+				"elementId": "mcd2",
+				"elementName": "Новый МЦД"
+			}
+		],
 		"parentLayers": [],
 		"childLayers": ["mcd-roads", "mcd-stations"],
-		"popupHtml": ""
+		"popupHtml": "",
+		"layerName": "Схема Московских МЦД"
 	}
 }

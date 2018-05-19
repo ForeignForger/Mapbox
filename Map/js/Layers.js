@@ -1,35 +1,36 @@
 function LayerService(map){
 	var self = this;
-	self.map = map;
+	self._map = map;
 	
 	self.addLayers = function(jsonElementId){
-		if (self.map){
-			var layersJson = getLayersByIds(jsonElementId);
+		if (self._map){
+			var layersJson = getMainJson(jsonElementId);
 			
 			if (layersJson){
-				var layersObj = JSON.parse(layersJson);
+				var jsonObj = JSON.parse(layersJson);
 				
-				$.each(layersObj.layers,function(index, value){
-					self.map.addLayer(value);
+				$.each(jsonObj.layers,function(index, value){
+					self._map.addLayer(value);
 					addEvents(value.id);
 					
 				});
 				
-				return layersObj.info;
+				return jsonObj.info;
 			}
 		}
 	};
 	
-	function getLayersByIds(jsonElementId){
+	function getMainJson(jsonElementId){
 		return $('#' + jsonElementId).html();
 	}
+	
 	function addEvents(layerId){
 		map.on('click', layerId, function (e) {
 			var coordinates = e.features[0].geometry.coordinates.slice();
 			if (!coordinates || coordinates.length != 2 || coordinates[0].length || coordinates[1].length){
 				coordinates = e.lngLat;
 			}
-			var layer = self.map.getLayer(layerId);
+			var layer = self._map.getLayer(layerId);
 			var popupData = JSON.parse(e.features[0].properties.popupData);
 			var popupId = 'map-box-popupId';
 			var popupHtml = '<div id="' + popupId + '">' + layer.metadata.popupHtml + '</div>';
@@ -49,13 +50,52 @@ function LayerService(map){
 				
 			ko.applyBindings(popupData, $('#' + popupId)[0]);
 		});
-		map.on('mouseenter', layerId, function () {
+		self._map.on('mouseenter', layerId, function () {
 			map.getCanvas().style.cursor = 'pointer';
 		});
 
-		map.on('mouseleave', layerId, function () {
+		self._map.on('mouseleave', layerId, function () {
 			map.getCanvas().style.cursor = '';
 		});
+	}
+	
+	self.getLayerObjectTree = function(rootLayerId){
+		var result = self.getLayerObjectById(rootLayerId);
+		if(result){	
+			result.childLayerObjects = {};
+			$.each(result.childLayers, function (index, layerId){
+				var obj = self.getLayerObjectTree(layerId);
+				if(obj){
+					result.childLayerObjects[layerId] = obj;
+				}
+				
+			});
+			
+			return result;
 		}
+		
+		return undefined;
+	}
+	
+	self.getLayerObjectById = function(layerId){
+		var layer = self._map.getLayer(layerId);
+		
+		if(layer && layer.metadata){
+			layer.metadata.layerId = layerId;
+			return layer.metadata;
+		}
+		
+		return undefined;
+	}
+	
+	self.getLayer = function(layerId){
+		var layer = self._map.getLayer(layerId);
+		
+		if(layer){
+			return layer;
+		}
+		
+		return undefined;
+	}
 }
 //Дописать обработку кликов по слоям итд

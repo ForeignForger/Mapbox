@@ -5,7 +5,8 @@
 		"elements": [],
 		"parentLayers": ["mcds"],
 		"childLayers": ["mcd-road-speedInfos"],
-		"popupHtml": "<div><span>This is <span data-bind='text: name'></span></span></div>"
+		"popupHtml": "<div><span>This is <span data-bind='text: name'></span></span></div>",
+		"layerName": "Дороги"
 	},
 	"minzoom": 10,
 	"source":{

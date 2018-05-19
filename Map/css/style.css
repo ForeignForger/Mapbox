@@ -18,7 +18,7 @@
 	width: 320px;
 	height: 800px;
 }
-.control-panel.top-right .toggle{
+.control-panel.top-right .control-panel-toggle{
 	float: left; 
 	width: 20px;
 	height: 20px;
@@ -26,7 +26,7 @@
 	cursor: pointer;
 }
 
-.control-panel.top-right .toggle.open{
+.control-panel.top-right .control-panel-toggle.open{
 	background-color: red;
 }
 
@@ -38,7 +38,6 @@
 }
 .control-panel.top-right .control-area .head{
 	width: 100%;
-	background-color: #8cb6d4;
 }
 
 .control-panel.top-right .control-area .head .select-control{
@@ -47,4 +46,20 @@
 	line-height: 20px;
 	width: 100%;
 	background-color: #8cb6d4;
+}
+
+.main-control{
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.main-control .head{
+		background-color: #7b68ee;
+}
+
+.main-control .body .element-list{
+	background-color: #98acd6;
+	padding: 0 10px;
+	margin-top: 5px;
 }

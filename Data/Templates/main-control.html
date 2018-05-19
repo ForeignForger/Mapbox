@@ -1,0 +1,13 @@
+<div class='main-control'>
+	<div class='head'>
+		<span class='layer-toggle' data-bind='css: { shown: mainLayer.IsShown() }, click: mainLayer.showHideLayer'></span>
+		<span class='layer-name' data-bind='text: mainLayer.layerName, click: mainLayer.showHideLayerMenu'></span>
+	</div>
+	<div class='body'>
+		<ul class='element-list' data-bind='foreach: mainLayer.elements'>
+			<li class='element'>
+				<span class='element-toggle'></span><span class='element-name' data-bind='text: elementName'></span>
+			</li>
+		</ul>
+	</div>
+</div>

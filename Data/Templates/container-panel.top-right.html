@@ -1,13 +1,13 @@
 <div class='control-panel top-right'>
-	<div class='toggle' data-bind='click: toggleControlPanel(), css: { open: IsOpen() }'>
+	<div class='control-panel-toggle' data-bind='click: toggleControlPanel(), css: { open: IsOpen() }'>
 	</div>
 	<div class='control-area'>
 		<div class= 'head'>
 			<select class='select-control' data-bind='foreach: controls'>
-			  <option class='control-switch' data-bind='text: name, click: $parents[0].selectControl(controlId)'></option>
+			  <option class='control-switch' data-bind='text: controlName, click: $parents[0].selectControl(controlId)'></option>
 			</select>
 		</div>
 		<div class='body'>
-		<div>
+		</div>
 	</div>
 </div>
