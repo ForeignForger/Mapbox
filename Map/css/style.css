@@ -7,3 +7,44 @@
 	width: 900px;
 	height: 900px;
 }
+
+.control-panel{
+	position: relative;
+	transition: 0.3s;
+}
+
+.control-panel.top-right{
+	pointer-events: auto;
+	width: 320px;
+	height: 800px;
+}
+.control-panel.top-right .toggle{
+	float: left; 
+	width: 20px;
+	height: 20px;
+	background-color: green;
+	cursor: pointer;
+}
+
+.control-panel.top-right .toggle.open{
+	background-color: red;
+}
+
+.control-panel.top-right .control-area{
+	background-color: #4e70ba;
+	float:left;
+	width: 300px;
+	height: 100%;
+}
+.control-panel.top-right .control-area .head{
+	width: 100%;
+	background-color: #8cb6d4;
+}
+
+.control-panel.top-right .control-area .head .select-control{
+	cursor: pointer;
+	height: 20px;
+	line-height: 20px;
+	width: 100%;
+	background-color: #8cb6d4;
+}

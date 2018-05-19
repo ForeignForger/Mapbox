@@ -44,8 +44,7 @@ function Mapbox(){
 	function init(){
 		if(self.map){
 			var info = addLayers();
-			addControls(info); //переписать логику инициализации контроллеров
-			//ko.applyBindings(self.controls);
+			addControls(info);
 		}
 	}
 	
@@ -56,7 +55,7 @@ function Mapbox(){
 	}
 	
 	function addControls(info){
-		var controlService = new ControlService(self.map, info);
-		controlService.addControls();
+		var controlService = new ControlPanelService(self.map, info);
+		controlService.addControlPanelsAtMap();
 	}
 }
