@@ -34,25 +34,14 @@ function ControlService(map){
 	controlFunctionalityObjects["main-control"] = function(controlInfo){
 		var layerService = new LayerService(self._map);
 		this.mainLayer = layerService.getLayerObjectTree(controlInfo.layerId);
-		addAdditionalInfoToLayers(this.mainLayer);
 		
-		function addAdditionalInfoToLayers(layerObject){
-			layerObject.IsShown = ko.observable(true);
-			
-			layerObject.elements = layerObject.elements;
-			
-			layerObject.showHideLayer = function(){
-				var visibility = map.getLayoutProperty(this.layerId, 'visibility');
-					
-				if(visibility === 'visible'){
-					map.setLayoutProperty(this.layerId, 'visibility', 'none');
-					this.IsShown(false);
-				}
-				else{
-					map.setLayoutProperty(this.layerId, 'visibility', 'visible');
-					this.IsShown(true);
-				}
-			};
-		}
+		this.isLayerShown = function(e){
+		};
+		
+		this.showHideLayer = function(e){
+		};
+		
+		this.showHideLayerMenu = function(e){
+		};
 	};
 }

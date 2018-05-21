@@ -21,12 +21,12 @@
 		"controlPanels":[
 			{
 				"position": "top-right",
-				"panelHtml": "<div class='control-panel top-right'><div class='control-panel-toggle' data-bind='click: toggleControlPanel(), css: { open: IsOpen() }'></div><div class='control-area'><div class= 'head'><select class='select-control' data-bind='foreach: controls'><option class='control-switch' data-bind='text: controlName, click: $parents[0].selectControl(controlId)'></option></select></div><div class='body'></div></div></div>",
+				"panelHtml": "<div class='control-panel top-right'><div class='control-panel-toggle' data-bind='click: toggleControlPanel(), css: { open: IsOpen() }'></div><div class='control-area'><div class= 'head'><select class='select-control' data-bind='foreach: controls'><option class='control-switch' data-bind='text: controlName, click: $parents[0].selectControl(controlId)'></option></select></div><div class='body' data-bind='with: selectedControl'></div></div></div>",
 				"controls":	[
 						{
 							"layerId": "mcd",
 							"controlId": "main-control",
-							"controlHtml": "<div class='main-control'><div class='head'><span class='layer-toggle' data-bind='css: { shown: mainLayer.IsShown() }, click: mainLayer.showHideLayer'></span><span class='layer-name' data-bind='text: mainLayer.layerName, click: mainLayer.showHideLayerMenu'></span></div><div class='body'><ul class='element-list' data-bind='foreach: mainLayer.elements'><li class='element'><span class='element-toggle'></span><span class='element-name' data-bind='text: elementName'></span></li></ul></div></div>",
+							"controlHtml": "<div class='main-control'><div class='head'><span class='layer-toggle' data-bind='css: { shown: isLayerShown() }, click: showHideLayer, attr: {layer_target: mainLayer.layerId}'></span><span class='layer-name' data-bind='text: mainLayer.layerName, click: showHideLayerMenu, attr: {layer_target: mainLayer.layerId}'></span></div><div class='body'><ul class='element-list' data-bind='foreach: mainLayer.elements'><li class='element'><span class='element-toggle'></span><span class='element-name' data-bind='text: elementName'></span></li></ul></div></div>",
 							"controlName": "Главный котроллер"
 						}
 					]

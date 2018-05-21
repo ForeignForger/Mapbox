@@ -7,7 +7,7 @@
 			  <option class='control-switch' data-bind='text: controlName, click: $parents[0].selectControl(controlId)'></option>
 			</select>
 		</div>
-		<div class='body'>
+		<div class='body' data-bind='with: selectedControl'>
 		</div>
 	</div>
 </div>

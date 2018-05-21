@@ -1,7 +1,7 @@
 <div class='main-control'>
 	<div class='head'>
-		<span class='layer-toggle' data-bind='css: { shown: mainLayer.IsShown() }, click: mainLayer.showHideLayer'></span>
-		<span class='layer-name' data-bind='text: mainLayer.layerName, click: mainLayer.showHideLayerMenu'></span>
+		<span class='layer-toggle' data-bind='css: { shown: isLayerShown() }, click: showHideLayer, attr: {layer_target: mainLayer.layerId}'></span>
+		<span class='layer-name' data-bind='text: mainLayer.layerName, click: showHideLayerMenu, attr: {layer_target: mainLayer.layerId}'></span>
 	</div>
 	<div class='body'>
 		<ul class='element-list' data-bind='foreach: mainLayer.elements'>

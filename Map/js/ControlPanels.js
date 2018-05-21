@@ -10,9 +10,8 @@ function ControlPanelService(map, info){
 	self.addControlPanelsAtMap = function(){
 		initControlPanels();
 		$.each(self.controlPanels, function(index, controlPanel){
-			self._map.addControl(controlPanel);
-			ko.applyBindings(controlPanel, $('#' + controlPanel.controlPanelId)[0]);
-			controlPanel.selectControl();
+			self._map.addControl(controlPanel);		
+			controlPanel.applyPanelBindings();
 		});
 	}
 	
@@ -33,6 +32,7 @@ function ControlPanelService(map, info){
 		this.position = info.position;
 		this.IsOpen = ko.observable(false);	
 		this.controls = ko.observableArray();
+		this.selectedControl = undefined;
 		
 		this.toggleControlPanel = function(){
 			var side;
@@ -58,28 +58,45 @@ function ControlPanelService(map, info){
 			}
 		}
 		
-		this.selectControl = function(controlId){
-			var selectedControl;
-			var controls = this.controls();
-			if (!controlId && controls.length > 0){
-				selectedControl = controls[0]
+		this.applyPanelBindings = function(){
+			if (!this.selectedControl && this.controls && this.controls() && this.controls().length > 0){
+				this.selectedControl = ko.observable(this.controls()[0]);
 			}
 			
-			
+			if(this.selectedControl && this.selectedControl()){
+					var $panel = $('#' + this.controlPanelId);
+					var $controlArea = $panel.find('.control-area .body');
+					$controlArea.empty();
+					$controlArea.append(this.selectedControl().controlHtml);
+					ko.cleanNode($panel[0]);
+					ko.applyBindings(this, $panel[0]);
+			}
+
+		}
+		
+		this.selectControl = function(controlId){
+			var controls = this.controls();
+			var shouldApply = false;
 			for (var i = 0; i < controls.length; i++){
 				if (controls[i].controlId == controlId){
-						selectedControl = controls[i];
-						break;
+					if (this.selectedControl){
+						if (this.selectedControl().controlId() != controlId()){
+							this.selectedControl(controls[i]);
+							shouldApply = true;
+						}
+						else{
+							break;
+						}
+					}
+					else{
+						this.selectedControl = ko.observable(controls[i]);
+						shouldApply = true;
+					}
 				}
 			}
 			
-			if(selectedControl){
-				var $controlBody = $('#' + this.controlPanelId + ' .control-area .body');
-				$controlBody.empty();
-				var $control = $('<div></div>');
-				$control.append(selectedControl.controlHtml);
-				$controlBody.append($control[0]);
-				ko.applyBindings(selectedControl, $control[0]);
+			if(this.selectedControl && shouldApply){
+				this.applyPanelBindings();
 			}
 		}
 		
