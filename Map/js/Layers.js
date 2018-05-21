@@ -97,5 +97,39 @@ function LayerService(map){
 		
 		return undefined;
 	}
+	
+	self.hideLayerTree = function(layerId, only){
+		var tree = self.getLayerObjectTree(layerId);
+		if(tree){
+			hideLayer(tree.layerId);
+			if (!only){
+				for (var i = 0; i < tree.childLayers.length; i++){
+					self.hideLayerTree(tree.childLayers[i]);
+				}
+			}
+
+		}
+		
+	}
+	
+	self.showLayerTree = function(layerId, only){
+		var tree = self.getLayerObjectTree(layerId);
+		if(tree){
+			showLayer(tree.layerId);
+			if (!only){
+				for (var i = 0; i < tree.childLayers.length; i++){
+					self.showLayerTree(tree.childLayers[i]);
+				}
+			}
+		}
+	}
+	
+	function hideLayer(layerId){
+		self._map.setLayoutProperty(layerId, 'visibility', 'none');
+	}
+	
+	function showLayer(layerId){
+		self._map.setLayoutProperty(layerId, 'visibility', 'visible');
+	}
 }
 //Дописать обработку кликов по слоям итд

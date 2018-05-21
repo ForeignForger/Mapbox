@@ -1,9 +1,9 @@
 <div class='main-control'>
-	<div class='head'>
-		<span class='layer-toggle' data-bind='css: { shown: isLayerShown() }, click: showHideLayer, attr: {layer_target: mainLayer.layerId}'></span>
-		<span class='layer-name' data-bind='text: mainLayer.layerName, click: showHideLayerMenu, attr: {layer_target: mainLayer.layerId}'></span>
+	<div class='control-head'>
+		<div class='toggle layer-toggle' data-bind='css: { shown: isLayerShown() }, click: showHideLayer.bind($element[0], mainLayer.layerId)'></div>
+		<span class='layer-name' data-bind='text: mainLayer.layerName, click: showHideLayerMenu.bind($element[0])'></span>
 	</div>
-	<div class='body'>
+	<div class='control-body'>
 		<ul class='element-list' data-bind='foreach: mainLayer.elements'>
 			<li class='element'>
 				<span class='element-toggle'></span><span class='element-name' data-bind='text: elementName'></span>

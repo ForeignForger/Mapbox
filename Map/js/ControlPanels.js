@@ -61,7 +61,7 @@ function ControlPanelService(map, info){
 		}
 		
 		panel.toggleControlList = function(){
-			
+			panel.IsControlListOpen(!panel.IsControlListOpen());
 		}
 		panel.applyPanelBindings = function(controlModel){
 			var control = controlModel

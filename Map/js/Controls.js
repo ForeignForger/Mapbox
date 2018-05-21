@@ -1,6 +1,7 @@
 function ControlService(map){
 	var self = this;
 	self._map = map;
+	self.layerService = new LayerService(self._map);
 	var controlFunctionalityObjects = {};
 	
 	self.get = function(controlInfo){
@@ -33,12 +34,22 @@ function ControlService(map){
 	}
 	controlFunctionalityObjects["main-control"] = function(controlInfo){
 		var layerService = new LayerService(self._map);
-		this.mainLayer = layerService.getLayerObjectTree(controlInfo.layerId);
 		
-		this.isLayerShown = function(e){
-		};
+		this.mainLayer = self.layerService.getLayerObjectTree(controlInfo.layerId);
 		
-		this.showHideLayer = function(e){
+		this.isLayerShown = ko.observable(true); //реализовать функцию для определения по id слоя (можно через атрибуты)
+		
+		this.showHideLayer = function(layerId, control){
+			var visibility = control._map.getLayoutProperty(layerId, 'visibility');
+			 if (visibility === 'visible') {
+				layerService.hideLayerTree(layerId, control.mainLayer.layerId != layerId);
+				control.isLayerShown(false);
+			 }
+			 else{
+				layerService.showLayerTree(layerId, control.mainLayer.layerId != layerId);
+				control.isLayerShown(true);
+			 }
+			
 		};
 		
 		this.showHideLayerMenu = function(e){
