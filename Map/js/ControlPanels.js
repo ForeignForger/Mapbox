@@ -10,7 +10,7 @@ function ControlPanelService(map, info){
 	self.addControlPanelsAtMap = function(){
 		initControlPanels();
 		$.each(self.controlPanels, function(index, controlPanel){
-			self._map.addControl(controlPanel);		
+			self._map.addControl(controlPanel, controlPanel.position);		
 			controlPanel.applyPanelBindings();
 		});
 	}
@@ -40,10 +40,10 @@ function ControlPanelService(map, info){
 			var side;
 			
 			if (panel.position == 'top-right' || panel.position == 'bottom-right' ){
-				side = 'left'
+				side = '';
 			}
 			else{
-				side = 'right';
+				side = '-';
 			}
 			
 			var $controlPanel =  $('#' + panel.controlPanelId + ' .control-panel');
@@ -51,11 +51,11 @@ function ControlPanelService(map, info){
 			if (panel.IsOpen()){
 				var $controlArea = $('#' + panel.controlPanelId + ' .control-area');
 				var width = $controlArea.css('width');
-				$controlPanel.css(side, width);
+				$controlPanel.css('left', side + width);
 				panel.IsOpen(false);
 			}
 			else {
-				$controlPanel.css(side, 0);
+				$controlPanel.css('left', 0);
 				panel.IsOpen(true);
 			}
 		}
@@ -66,20 +66,18 @@ function ControlPanelService(map, info){
 		panel.applyPanelBindings = function(controlModel){
 			var control = controlModel
 			var $panel = $('#' + panel.controlPanelId);
-			var $controlArea = $panel.find('.control-area .body');
-			$controlArea.empty();
+			ko.cleanNode($panel[0]);
+			$panel.empty();
+			$panel.append(panel.panelHtml);
 			
 			if (!control && panel.controls && panel.controls() && panel.controls().length > 0){
 				control = panel.controls()[0];
 			}
 			
-			if(control){
-
-					$controlArea.append(control.controlHtml);
-					ko.cleanNode($panel[0]);
-					panel.selectedControl = ko.observable(control);
-					ko.applyBindings(panel, $panel[0]);
-			}
+			var $controlBody = $panel.children('.control-panel').children('.control-area').children('.body');
+			$controlBody.append(control.controlHtml);
+			panel.selectedControl = ko.observable(control);
+			ko.applyBindings(panel, $panel[0]);
 
 		}
 		

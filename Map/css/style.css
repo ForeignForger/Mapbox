@@ -11,6 +11,8 @@
 .control-panel{
 	position: relative;
 	transition: 0.3s;
+	left:0;
+	right: 0;
 }
 
 .control-panel.top-right{
