@@ -27,82 +27,84 @@ function ControlPanelService(map, info){
 	}
 	
 	function ControlPanel(info){
-		this.controlPanelId = 'control-panel-' + info.position;
-		this.panelHtml = info.panelHtml;
-		this.position = info.position;
-		this.IsOpen = ko.observable(false);	
-		this.controls = ko.observableArray();
-		this.selectedControl = undefined;
+		var panel = this;
+		panel.controlPanelId = 'control-panel-' + info.position;
+		panel.panelHtml = info.panelHtml;
+		panel.position = info.position;
+		panel.IsOpen = ko.observable(true);
+		panel.IsControlListOpen = ko.observable(false);
+		panel.controls = ko.observableArray();
+		panel.selectedControl = undefined;
 		
-		this.toggleControlPanel = function(){
+		panel.toggleControlPanel = function(){
 			var side;
 			
-			if (this.position == 'top-right' || this.position == 'bottom-right' ){
+			if (panel.position == 'top-right' || panel.position == 'bottom-right' ){
 				side = 'left'
 			}
 			else{
 				side = 'right';
 			}
 			
-			var $controlPanel =  $('#' + this.controlPanelId + ' .control-panel');
+			var $controlPanel =  $('#' + panel.controlPanelId + ' .control-panel');
 			
-			if (this.IsOpen()){
-				var $controlArea = $('#' + this.controlPanelId + ' .control-area');
+			if (panel.IsOpen()){
+				var $controlArea = $('#' + panel.controlPanelId + ' .control-area');
 				var width = $controlArea.css('width');
 				$controlPanel.css(side, width);
-				this.IsOpen(false);
+				panel.IsOpen(false);
 			}
 			else {
 				$controlPanel.css(side, 0);
-				this.IsOpen(true);
+				panel.IsOpen(true);
 			}
 		}
 		
-		this.applyPanelBindings = function(){
-			if (!this.selectedControl && this.controls && this.controls() && this.controls().length > 0){
-				this.selectedControl = ko.observable(this.controls()[0]);
+		panel.toggleControlList = function(){
+			
+		}
+		panel.applyPanelBindings = function(controlModel){
+			var control = controlModel
+			var $panel = $('#' + panel.controlPanelId);
+			var $controlArea = $panel.find('.control-area .body');
+			$controlArea.empty();
+			
+			if (!control && panel.controls && panel.controls() && panel.controls().length > 0){
+				control = panel.controls()[0];
 			}
 			
-			if(this.selectedControl && this.selectedControl()){
-					var $panel = $('#' + this.controlPanelId);
-					var $controlArea = $panel.find('.control-area .body');
-					$controlArea.empty();
-					$controlArea.append(this.selectedControl().controlHtml);
+			if(control){
+
+					$controlArea.append(control.controlHtml);
 					ko.cleanNode($panel[0]);
-					ko.applyBindings(this, $panel[0]);
+					panel.selectedControl = ko.observable(control);
+					ko.applyBindings(panel, $panel[0]);
 			}
 
 		}
 		
-		this.selectControl = function(controlId){
-			var controls = this.controls();
-			var shouldApply = false;
+		panel.selectControl = function(controlId){
+			var controls = panel.controls();
 			for (var i = 0; i < controls.length; i++){
 				if (controls[i].controlId == controlId){
-					if (this.selectedControl){
-						if (this.selectedControl().controlId() != controlId()){
-							this.selectedControl(controls[i]);
-							shouldApply = true;
+					if (panel.selectedControl){
+						if (panel.selectedControl().controlId() != controlId()){
+							panel.applyPanelBindings(controls[i]);
 						}
 						else{
 							break;
 						}
 					}
 					else{
-						this.selectedControl = ko.observable(controls[i]);
-						shouldApply = true;
+						panel.applyPanelBindings(controls[i]);
 					}
 				}
 			}
-			
-			if(this.selectedControl && shouldApply){
-				this.applyPanelBindings();
-			}
 		}
 		
-		this.addControl = function(controlInfo){
+		panel.addControl = function(controlInfo){
 			var control = self.controlService.get(controlInfo)
-			this.controls.push(control);
+			panel.controls.push(control);
 		}	
 	}
 	
