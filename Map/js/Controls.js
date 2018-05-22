@@ -39,16 +39,15 @@ function ControlService(map){
 		this.layers = {};
 		getLayersDictionary(this.mainLayer, this.layers);
 		
-		this.showHideLayer = function(layerId, control){
+		this.showHideLayer = function(control, layerId){
 			 if (layerService.isLayerVisible(layerId)) {
 				layerService.hideLayerTree(layerId, control.mainLayer.layerId != layerId);
 				control.layers[layerId].IsLayerShown(false);
 			 }
 			 else{
-				layerService.showLayerTree(layerId, control.mainLayer.layerId != layerId);
 				control.layers[layerId].IsLayerShown(true);
+				layerService.updateTreeVisiblity(layerId, control.layers);
 			 }
-			
 		};
 		
 		this.showHideLayerMenu = function(e){
@@ -56,7 +55,8 @@ function ControlService(map){
 		
 		function getLayersDictionary(tree, result){
 			result[tree.layerId] = {
-				IsLayerShown: ko.observable(layerService.isLayerVisible(tree.layerId))
+				IsLayerShown: ko.observable(layerService.isLayerVisible(tree.layerId)),
+				IsLayerMenuShown: ko.observable(true),
 			}
 			
 			for(var i = 0; i < tree.childLayerObjects.length; i++){

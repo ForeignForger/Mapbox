@@ -11,7 +11,7 @@ function Mapbox(){
 	
 
 	self.run = function run(settings){
-		updateSettings(self.settings)
+		updateSettings(settings);
 		setToken();
 		
 		self.map = new mapboxgl.Map({

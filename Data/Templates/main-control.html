@@ -1,13 +1,28 @@
 <div class='main-control'>
 	<div class='control-head'>
-		<div class='toggle layer-toggle' data-bind='css: { shown: layers[mainLayer.layerId].IsLayerShown() }, click: showHideLayer.bind($element[0], mainLayer.layerId)'></div>
-		<span class='layer-name' data-bind='text: mainLayer.layerName, click: showHideLayerMenu.bind($element[0])'></span>
+		<div class='toggle layer-toggle' data-bind='css: { shown: layers[mainLayer.layerId].IsLayerShown() }, click: showHideLayer.bind(null, $data, mainLayer.layerId)'></div>
+		<span class='layer-name' data-bind='text: mainLayer.layerName, click: showHideLayerMenu.bind(null, $data, mainLayer.layerId)'></span>
 	</div>
-	<div class='control-body'>
+	<div class='control-body' data-bind='visible: layers[mainLayer.layerId].IsLayerShown() && layers[mainLayer.layerId].IsLayerMenuShown()'>
 		<ul class='element-list' data-bind='foreach: mainLayer.elements'>
 			<li class='element'>
 				<span class='element-toggle'></span><span class='element-name' data-bind='text: elementName'></span>
 			</li>
 		</ul>
+		<div class='layer-list' data-bind='foreach: mainLayer.childLayerObjects'>
+			<div class='layer'>
+				<div class='layer-head'>
+					<div class='toggle layer-toggle' data-bind='css: { shown: $parent.layers[layerId].IsLayerShown() }, click: $parents[0].showHideLayer.bind(null, $parent, layerId)'></div>
+					<span class='layer-name' data-bind='text: layerName, click: $parent.showHideLayerMenu.bind(null, $parent, layerId)'></span>
+				</div>
+				<div class='layer-body' data-bind='visible: $parents[0].layers[layerId].IsLayerShown() && $parents[0].layers[layerId].IsLayerMenuShown()'>
+					<ul class='child-layer-list' data-bind='foreach: childLayerObjects'>
+						<li class='child-layer'>
+							<span class='element-toggle'></span><span class='element-name' data-bind='text: layerName'></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

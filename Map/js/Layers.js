@@ -62,11 +62,11 @@ function LayerService(map){
 	self.getLayerObjectTree = function(rootLayerId){
 		var result = self.getLayerObjectById(rootLayerId);
 		if(result){	
-			result.childLayerObjects = {};
+			result.childLayerObjects = [];
 			$.each(result.childLayers, function (index, layerId){
 				var obj = self.getLayerObjectTree(layerId);
 				if(obj){
-					result.childLayerObjects[layerId] = obj;
+					result.childLayerObjects.push(obj);
 				}
 				
 			});
@@ -75,7 +75,7 @@ function LayerService(map){
 		}
 		
 		return undefined;
-	}
+	};
 	
 	self.getLayerObjectById = function(layerId){
 		var layer = self._map.getLayer(layerId);
@@ -86,7 +86,7 @@ function LayerService(map){
 		}
 		
 		return undefined;
-	}
+	};
 	
 	self.getLayer = function(layerId){
 		var layer = self._map.getLayer(layerId);
@@ -96,7 +96,26 @@ function LayerService(map){
 		}
 		
 		return undefined;
-	}
+	};
+	
+	self.updateTreeVisiblity = function(layerId, layersInfo){
+		if (!layersInfo[layerId]){
+			return;
+		}
+		var obj = self.getLayerObjectById(layerId);
+		
+		if(obj){
+			if(layersInfo[obj.layerId] && layersInfo[obj.layerId].IsLayerShown()){
+				showLayer(obj.layerId);
+			}else{
+				hideLayer(obj.layerId);
+			}
+			
+			for (var i = 0; i < obj.childLayers.length; i++){
+				self.updateTreeVisiblity(obj.childLayers[i], layersInfo);
+			}
+		}
+	};
 	
 	self.hideLayerTree = function(layerId, only){
 		var tree = self.getLayerObjectTree(layerId);
@@ -122,12 +141,12 @@ function LayerService(map){
 				}
 			}
 		}
-	}
+	};
 	
 	self.isLayerVisible = function(layerId){
 		var visibility = self._map.getLayoutProperty(layerId, 'visibility');
 		return visibility === 'visible';
-	}
+	};
 	
 	function hideLayer(layerId){
 		self._map.setLayoutProperty(layerId, 'visibility', 'none');
