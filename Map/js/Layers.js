@@ -124,6 +124,11 @@ function LayerService(map){
 		}
 	}
 	
+	self.isLayerVisible = function(layerId){
+		var visibility = self._map.getLayoutProperty(layerId, 'visibility');
+		return visibility === 'visible';
+	}
+	
 	function hideLayer(layerId){
 		self._map.setLayoutProperty(layerId, 'visibility', 'none');
 	}

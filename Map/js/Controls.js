@@ -17,6 +17,7 @@ function ControlService(map){
 	
 	function Control(controlInfo)
 	{
+		this.flag = ko.observable(0);
 		this.controlName = controlInfo.controlName;
 		this._map = self._map;
 		this.controlId = ko.observable(controlInfo.controlId);
@@ -34,25 +35,33 @@ function ControlService(map){
 	}
 	controlFunctionalityObjects["main-control"] = function(controlInfo){
 		var layerService = new LayerService(self._map);
-		
 		this.mainLayer = self.layerService.getLayerObjectTree(controlInfo.layerId);
-		
-		this.isLayerShown = ko.observable(true); //реализовать функцию для определения по id слоя (можно через атрибуты)
+		this.layers = {};
+		getLayersDictionary(this.mainLayer, this.layers);
 		
 		this.showHideLayer = function(layerId, control){
-			var visibility = control._map.getLayoutProperty(layerId, 'visibility');
-			 if (visibility === 'visible') {
+			 if (layerService.isLayerVisible(layerId)) {
 				layerService.hideLayerTree(layerId, control.mainLayer.layerId != layerId);
-				control.isLayerShown(false);
+				control.layers[layerId].IsLayerShown(false);
 			 }
 			 else{
 				layerService.showLayerTree(layerId, control.mainLayer.layerId != layerId);
-				control.isLayerShown(true);
+				control.layers[layerId].IsLayerShown(true);
 			 }
 			
 		};
 		
 		this.showHideLayerMenu = function(e){
 		};
+		
+		function getLayersDictionary(tree, result){
+			result[tree.layerId] = {
+				IsLayerShown: ko.observable(layerService.isLayerVisible(tree.layerId))
+			}
+			
+			for(var i = 0; i < tree.childLayerObjects.length; i++){
+				getLayersDictionary(tree.childLayerObjects[i], result);
+			}
+		}
 	};
 }

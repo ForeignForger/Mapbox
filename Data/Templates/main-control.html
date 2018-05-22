@@ -1,6 +1,6 @@
 <div class='main-control'>
 	<div class='control-head'>
-		<div class='toggle layer-toggle' data-bind='css: { shown: isLayerShown() }, click: showHideLayer.bind($element[0], mainLayer.layerId)'></div>
+		<div class='toggle layer-toggle' data-bind='css: { shown: layers[mainLayer.layerId].IsLayerShown() }, click: showHideLayer.bind($element[0], mainLayer.layerId)'></div>
 		<span class='layer-name' data-bind='text: mainLayer.layerName, click: showHideLayerMenu.bind($element[0])'></span>
 	</div>
 	<div class='control-body'>
