@@ -2,6 +2,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	font-size: 13px;
 }
 
 .map{
@@ -37,6 +38,9 @@
 }
 
 .control-panel.top-right .control-area{
+	border-style: solid;
+    border-width: 1px;
+    border-color: #131c31;
 	background-color: #4e70ba;
 	float:left;
 	width: 300px;
@@ -50,14 +54,12 @@
 
 .control-panel.top-right .control-area .head{
 	width: 100%;
-	margin-bottom: 15px;
-}
-
-.control-panel.top-right .control-area .head .control-list li{
-	padding-left: 10px;
 }
 
 .control-panel.top-right .control-area .head .control-name{
+	border-style: solid;
+    border-width: 0 0 1px 0;
+	border-color: #283c68;
 	cursor: pointer;
 	background-color: #7C509F;
 }
@@ -68,7 +70,7 @@
 
 
 .control-panel.top-right .control-area .control-list{
-	background-color: #BEA4D5;
+	background-color: #7C509F;
 	list-style-type: none; 
 	height: 0;
 	overflow: hidden;
@@ -80,10 +82,16 @@
 
 .control-panel.top-right .control-area .control-list .control-list-element{
 	cursor:pointer;
+	padding-left: 10px;
+	border-color: #283c68;
 }
-
+.control-panel.top-right .control-area .control-list :last-child{
+	border-style: solid;
+    border-width: 0 0 2px 0;
+	border-color: #131c31;
+}
 .control-panel.top-right .control-area .control-list .control-list-element:hover{
-	background-color: #D8C6E6;
+	background-color: #64437F;
 }
 
 .main-control{
@@ -95,13 +103,21 @@
 .main-control .control-head{
 	background-color: #7b68ee;
 	width: 100%;
+	border-style: solid;
+    border-width: 0 0 1px 0;
+	border-color: #283c68;
+}
+
+.main-control .control-body{
+	border-style: solid;
+    border-width: 0 0 1px 0;
+	border-color: #131c31;
 }
 
 .main-control .control-body .element-list{
 	list-style-type: none; 
 	background-color: #98acd6;
 	padding: 0 10px;
-	margin-top: 5px;
 }
 
 .main-control .layer-toggle{

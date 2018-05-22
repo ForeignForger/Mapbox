@@ -4,8 +4,8 @@
 	<div class='control-area'>
 		<div class= 'head'>
 			<div>
-				<div class='control-name'>
-					<span data-bind='text:selectedControl().controlName, click: toggleControlList'></span>
+				<div class='control-name' data-bind='click: toggleControlList'>
+					<span data-bind='text:selectedControl().controlName'></span>
 				</div>
 				<ul class='control-list' data-bind='foreach: controls, css: {open: IsControlListOpen}'>
 					<!-- ko if: $parents[0].selectedControl().controlId != controlId-->
