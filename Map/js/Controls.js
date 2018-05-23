@@ -42,7 +42,33 @@ function ControlService(map){
 		this.toggleElementFilter = function(control, elementId, layerId){
 			var layer = control.layers[layerId];
 			var element = layer.elements[elementId];
-			element.IsElementShown(!element.IsElementShown());
+			if(element.IsElementShown()){
+				layerService.addFilters(layerId, uniteFilters("any", [
+																		getFilter("ownerLayer",  "!=", layerId), 
+																		getFilter("ownerElement",  "!=", elementId)
+																	]));
+				element.IsElementShown(false);
+			}
+			else{
+				layerService.removeFilters(layerId, uniteFilters("any", [
+																		getFilter("ownerLayer",  "!=", layerId), 
+																		getFilter("ownerElement",  "!=", elementId)
+																	]));
+				element.IsElementShown(true);
+			}
+			
+			function uniteFilters(action, filters){
+				var result = [[action]];
+				for(var i = 0; i < filters.length; i++){
+					result[0].push(filters[i]);
+				}
+				return result;
+			}
+			
+			function getFilter(_property, _action, _value){
+				return [_action, _property, _value];
+			}
+			
 		}
 		
 		this.showHideLayer = function(control, layerId){

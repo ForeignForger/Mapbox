@@ -155,4 +155,84 @@ function LayerService(map){
 	function showLayer(layerId){
 		self._map.setLayoutProperty(layerId, 'visibility', 'visible');
 	}
+	
+	self.addFilters = function(layerId, filters){
+		var obj = self.getLayerObject(layerId);
+		
+		if(obj){
+			var filter = self._map.getFilter(layerId);
+			
+			for (var i = 0; i < filters.length; i++){
+				filter = addFilter(filter, filters[i]);
+			}
+			
+			self._map.setFilter(layerId, filter);
+			
+			for (var j = 0; j < obj.childLayers.length; j++){
+				self.addFilters(obj.childLayers[j], filters);
+			}
+		}
+	};
+	
+	self.removeFilters = function(layerId, filters){
+		var obj = self.getLayerObject(layerId);
+		
+		if(obj){
+			var filter = self._map.getFilter(layerId);
+			
+			for (var i = 0; i < filters.length; i++){
+				filter = removeFilter(filter, filters[i]);
+			}
+			
+			self._map.setFilter(layerId, filter);
+			
+			for (var j = 0; j < obj.childLayers.length; j++){
+				self.removeFilters(obj.childLayers[j], filters);
+			}
+		}
+	};
+
+	function addFilter(oldFilter, newFilter){
+		if (!oldFilter){
+			oldFilter = ["all"];
+		}
+		
+		oldFilter.push(newFilter);
+		return oldFilter;
+	}
+	
+	function removeFilter(oldFilter, filter){
+		if (oldFilter && oldFilter.length){
+			var result  = [oldFilter[0]];
+			
+			for (var i = 1; i < oldFilter.length; i++){
+				if(!equalFilters(oldFilter[i], filter)){
+					result.push(oldFilter[i]);
+				}
+			}
+
+			return result;
+		}
+		
+		return undefined;
+	}
+	
+	function equalFilters(filterA, filterB){
+		if (filterA && filterB && filterA.length === filterB.length){
+			for(var i = 0; i < filterA.length; i++){
+				if (Array.isArray(filterA[i]) && Array.isArray(filterB[i])){
+					if (!equalFilters(filterA[i], filterB[i])){
+						return false;
+					}
+				}
+				else if(filterA[i] != filterB[i]){
+					return false;
+				}
+			}
+			
+			return true;
+		}
+		
+		return false;
+	}
 }

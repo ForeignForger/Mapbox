@@ -79,7 +79,7 @@
 					"type": "Feature",
 					"properties": {
 						"year": "2010",
-						"ownerLayer": "mcds",
+						"ownerLayer": "mcd",
 						"ownerElement": "mcd1",
 						"popupData": {"name": "mcd1road"}
 					}
@@ -221,7 +221,7 @@
 					"type": "Feature",
 					"properties": {
 						"year": "2009",
-						"ownerLayer": "mcds",
+						"ownerLayer": "mcd",
 						"ownerElement": "mcd2",
 						"popupData": {"name": "mcd2road"}
 					}

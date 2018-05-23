@@ -3,7 +3,7 @@
 	"type": "symbol",
 	"metadata":{
 		"elements": [],
-		"parentLayers": ["mcds"],
+		"parentLayers": ["mcd"],
 		"childLayers": [],
 		"popupHtml": "<div><span>This is <span data-bind='text: name'></span></span></div>"б
 		"layerName": "Станции"
@@ -25,7 +25,7 @@
 					"type": "Feature",
 					"properties": {
 						"year": "2010",
-						"ownerLayer": "mcds",
+						"ownerLayer": "mcd",
 						"ownerElement": "mcd1",
 						"popupData": {"name": "mcd1Station Station1"}
 					}
@@ -40,7 +40,7 @@
 					"type": "Feature",
 					"properties": {
 						"year": "2010",
-						"ownerLayer": "mcds",
+						"ownerLayer": "mcd",
 						"ownerElement": "mcd1",
 						"popupData": {"name": "mcd1Station Station2"}
 					}
@@ -55,7 +55,7 @@
 					"type": "Feature",
 					"properties": {
 						"year": "2010",
-						"ownerLayer": "mcds",
+						"ownerLayer": "mcd",
 						"ownerElement": "mcd1",
 						"popupData": {"name": "mcd1Station Station3"}
 					}
@@ -70,7 +70,7 @@
 					"type": "Feature",
 					"properties": {
 						"year": "2010",
-						"ownerLayer": "mcds",
+						"ownerLayer": "mcd",
 						"ownerElement": "mcd1",
 						"popupData": {"name": "mcd1Station Station4"}
 					}
