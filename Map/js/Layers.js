@@ -60,7 +60,7 @@ function LayerService(map){
 	}
 	
 	self.getLayerObjectTree = function(rootLayerId){
-		var result = self.getLayerObjectById(rootLayerId);
+		var result = self.getLayerObject(rootLayerId);
 		if(result){	
 			result.childLayerObjects = [];
 			$.each(result.childLayers, function (index, layerId){
@@ -77,7 +77,7 @@ function LayerService(map){
 		return undefined;
 	};
 	
-	self.getLayerObjectById = function(layerId){
+	self.getLayerObject = function(layerId){
 		var layer = self._map.getLayer(layerId);
 		
 		if(layer && layer.metadata){
@@ -102,7 +102,7 @@ function LayerService(map){
 		if (!layersInfo[layerId]){
 			return;
 		}
-		var obj = self.getLayerObjectById(layerId);
+		var obj = self.getLayerObject(layerId);
 		
 		if(obj){
 			if(layersInfo[obj.layerId] && layersInfo[obj.layerId].IsLayerShown()){
@@ -156,4 +156,3 @@ function LayerService(map){
 		self._map.setLayoutProperty(layerId, 'visibility', 'visible');
 	}
 }
-//Дописать обработку кликов по слоям итд

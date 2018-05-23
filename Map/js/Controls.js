@@ -39,6 +39,12 @@ function ControlService(map){
 		this.layers = {};
 		getLayersDictionary(this.mainLayer, this.layers);
 		
+		this.toggleElementFilter = function(control, elementId, layerId){
+			var layer = control.layers[layerId];
+			var element = layer.elements[elementId];
+			element.IsElementShown(!element.IsElementShown());
+		}
+		
 		this.showHideLayer = function(control, layerId){
 			 if (layerService.isLayerVisible(layerId)) {
 				layerService.hideLayerTree(layerId, control.mainLayer.layerId != layerId);
@@ -48,8 +54,9 @@ function ControlService(map){
 				control.layers[layerId].IsLayerShown(true);
 				layerService.updateTreeVisiblity(layerId, control.layers);
 			 }
-		};
 		
+		
+		};
 		this.showHideLayerMenu = function(control, layerId){
 			var layerInfo = control.layers[layerId];
 			if (layerInfo && layerInfo.IsLayerShown()){
@@ -58,15 +65,26 @@ function ControlService(map){
 		};
 		
 		function getLayersDictionary(tree, result){
-			result[tree.layerId] = {
-				IsLayerShown: ko.observable(layerService.isLayerVisible(tree.layerId)),
-				IsLayerMenuShown: ko.observable(true),
-				elements: getElementsDictionary(tree.elements),
-			}
+			result[tree.layerId] = new Layer(tree.layerId, tree.elements);
 			
 			for(var i = 0; i < tree.childLayerObjects.length; i++){
 				getLayersDictionary(tree.childLayerObjects[i], result);
 			}
+		}
+		
+		function Layer(layerId, elements){
+			var layer = this;
+			layer.layerId = layerId;
+			layer.IsLayerShown = ko.observable(layerService.isLayerVisible(layerId)),
+			layer.IsLayerMenuShown = ko.observable(true);
+			
+			layer.isLayerActive = ko.computed(function(){
+				var obj = layerService.getLayerObject(layer.layerId);
+				return layer.IsLayerShown() && obj && (obj.elements && obj.elements.length || obj.childLayers && obj.childLayerObjects.length); //стоит убрать проверку на элементы или добавить эту функциональность дальше по уровням
+				
+			});
+			
+			layer.elements = getElementsDictionary(elements);
 		}
 		
 		function getElementsDictionary(elements){
