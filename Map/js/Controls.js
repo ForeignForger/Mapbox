@@ -50,18 +50,35 @@ function ControlService(map){
 			 }
 		};
 		
-		this.showHideLayerMenu = function(e){
+		this.showHideLayerMenu = function(control, layerId){
+			var layerInfo = control.layers[layerId];
+			if (layerInfo && layerInfo.IsLayerShown()){
+				layerInfo.IsLayerMenuShown(!layerInfo.IsLayerMenuShown());
+			}
 		};
 		
 		function getLayersDictionary(tree, result){
 			result[tree.layerId] = {
 				IsLayerShown: ko.observable(layerService.isLayerVisible(tree.layerId)),
 				IsLayerMenuShown: ko.observable(true),
+				elements: getElementsDictionary(tree.elements),
 			}
 			
 			for(var i = 0; i < tree.childLayerObjects.length; i++){
 				getLayersDictionary(tree.childLayerObjects[i], result);
 			}
+		}
+		
+		function getElementsDictionary(elements){
+			var result = {};
+			
+			for(var i = 0; i < elements.length; i++){
+				result[elements[i].elementId] = {
+					IsElementShown: ko.observable(true),// может быть проблема с фильтрами заданными по умолчанию, самое простое решение чистить их.
+				}
+			}
+			
+			return result;
 		}
 	};
 }

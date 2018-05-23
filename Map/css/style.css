@@ -49,7 +49,7 @@
 }
 
 .control-panel.top-right .control-area span{
-	padding-left: 10px;
+	margin-left: 10px;
 }
 
 .control-panel.top-right .control-area .head{
@@ -110,17 +110,36 @@
 
 .main-control .control-body{
 	border-style: solid;
-    border-width: 0 0 1px 0;
+    border-width: 0 0 2px 0;
 	border-color: #131c31;
+}
+
+.main-control .control-body{
+	background-color: yellow;
 }
 
 .main-control .control-body .element-list{
 	list-style-type: none; 
 	background-color: #98acd6;
-	padding: 0 10px;
 }
 
-.main-control .layer-toggle{
+.main-control .control-body .layer-list{
+	background-color: #98cbd6;
+	
+}
+
+.main-control .control-body .layer-list .layer{
+	border-style: solid;
+    border-width: 0 0 1px 0;
+	border-color: #283c68;
+}
+.main-control .control-body .layer-list .layer:last-of-type{
+	border-width: 0;
+}
+.main-control .control-body .layer-list, .main-control .control-body .element-list{
+	margin-left: 5px;
+}
+.main-control .layer-toggle, .main-control .element-toggle{
 	border-color: #000;
 	border-style: solid;
 	border-width: 1px;
@@ -130,7 +149,16 @@
 	height: 10px;
 	background-color: red;
 }
+.main-control .element-toggle{
+	border-radius: 5px;
+	background-color: #ff002a;
+}
 
 .main-control .layer-toggle.shown{
 	background-color: green;
+}
+
+
+.main-control .element-toggle.shown{
+	background-color: #ffd500;
 }
