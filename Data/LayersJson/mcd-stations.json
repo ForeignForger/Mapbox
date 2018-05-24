@@ -8,7 +8,6 @@
 		"popupHtml": "<div><span>This is <span data-bind='text: name'></span></span></div>"б
 		"layerName": "Станции"
 	},
-	"minzoom": 10,
 	"source": {
 		"type": "geojson",
 		"data": {
