@@ -175,3 +175,19 @@
 .main-control .layer-name.active:hover{
 	color: #FFF;
 }
+
+.main-control .layer-list .layer .layer-head{
+	border-style: solid;
+    border-width: 0 0 1px 0;
+	border-color: #283c68;
+}
+
+.main-control .layer-list .layer .layer-body{
+	background-color: blue;
+
+}
+
+.main-control .layer-list .layer .layer-body .child-layer-list{
+	margin-left: 5px;
+	background-color: #bed588;
+}

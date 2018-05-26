@@ -3,10 +3,13 @@
 	"type": "line",
 	"metadata":{
 		"elements": [],
-		"parentLayers": ["mcds"],
+		"parentLayers": ["mcd"],
 		"childLayers": ["mcd-road-speedInfos"],
-		"popupHtml": "<div><span>This is <span data-bind='text: name'></span></span></div>",
-		"layerName": "Дороги"
+		"layerName": "Дороги",
+		"level":{
+			"relative": "mcd",
+			"order": 1
+		}
 	},
 	"source":{
 		"type": "geojson",
@@ -20,7 +23,6 @@
 						"year": 2009,
 						"ownerLayer": "mcd",
 						"ownerElement": "mcd1",
-						"popupData": {"name": "Маршрут МЦД1"},
 						"color": "#7235c6"
 					}
 				},
@@ -31,7 +33,6 @@
 						"year": 2010,
 						"ownerLayer": "mcd",
 						"ownerElement": "mcd2",
-						"popupData": {"name": "Маршрут МЦД2"},
 						"color": "#237a34"
 					}
 				}	

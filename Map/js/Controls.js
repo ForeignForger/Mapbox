@@ -73,7 +73,7 @@ function ControlService(map){
 		
 		this.showHideLayer = function(control, layerId){
 			 if (layerService.isLayerVisible(layerId)) {
-				layerService.hideLayerTree(layerId, control.mainLayer.layerId != layerId);
+				layerService.hideLayerTree(layerId, false);
 				control.layers[layerId].IsLayerShown(false);
 			 }
 			 else{

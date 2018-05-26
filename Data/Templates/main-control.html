@@ -19,7 +19,8 @@
 				<div class='layer-body' data-bind='visible: $parent.layers[layerId].IsLayerShown() && $parent.layers[layerId].IsLayerMenuShown()'>
 					<ul class='child-layer-list' data-bind='foreach: childLayerObjects'>
 						<li class='child-layer'>
-							<div class='toggle layer-toggle'></div><span class='layer-name' data-bind='text: layerName'></span>
+							<div class='toggle layer-toggle' data-bind='css: { shown: $parents[1].layers[layerId].IsLayerShown() }, click: $parents[1].showHideLayer.bind(null, $parents[1], layerId)'></div>
+							<span class='layer-name' data-bind='text: layerName'></span>
 						</li>
 					</ul>
 				</div>

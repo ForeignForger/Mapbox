@@ -1,13 +1,12 @@
 {
-	"id": "mcd-stations",
-	"type": "circle",
+	"id": "mcd-station-names",
+	"type": "symbol",
 	"metadata":{
 		"elements": [],
-		"parentLayers": ["mcd"],
-		"childLayers": ["mcd-station-names"],
-		"popupHtml": "<div><div>This is <span data-bind='text: name'></span></div><div data-bind='text: text'></div></div>",
-		"layerName": "Станции",
-		"levelOrder": 2
+		"parentLayers": ["mcd-stations"],
+		"childLayers": [],
+		"layerName": "Название станции",
+		"levelOrder": 1
 	},
 	"source": {
 		"type": "geojson",
@@ -17,14 +16,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Лобня",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Лобня",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -37,14 +32,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Шереметьевская",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Шереметьевская",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -57,14 +48,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Хлебниково",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Хлебниково",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -77,14 +64,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Водники",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Водники",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -97,14 +80,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Долгопрудный",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Долгопрудный",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -117,14 +96,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Новодачная",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Новодачная",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -137,14 +112,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Марк",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Марк",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -157,14 +128,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Лиаонозово",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Лиаонозово",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -177,14 +144,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Бескудниково",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Бескудниково",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -197,14 +160,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Дегунино",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Дегунино",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -217,14 +176,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Окружная",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Окружная",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -237,14 +192,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Петровско-Разумовская",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Петровско-Разумовская",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -257,14 +208,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Тимирязевская",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Тимирязевская",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -277,14 +224,10 @@
 {
   "type": "Feature",
   "properties": {
+    "name": "Дмитровская",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Дмитровская",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   },
   "geometry": {
     "coordinates": [
@@ -304,14 +247,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Савеловский вокзал",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Савеловский вокзал",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -324,14 +263,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Белорусский вокзал",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Белорусский вокзал",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -344,14 +279,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Беговая",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Беговая",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -364,14 +295,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Тестовская",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Тестовская",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -384,14 +311,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Фили",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Фили",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -404,14 +327,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Славянский бульвар",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Славянский бульвар",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -424,14 +343,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Кунцево",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Кунцево",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -444,14 +359,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Рабочик поселок",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Рабочик поселок",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -464,14 +375,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Сетунь",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Сетунь",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -484,14 +391,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Немчиновка",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Немчиновка",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -504,14 +407,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Соколово",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Соколово",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -524,14 +423,10 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Баковка",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Баковка",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 },
 {
@@ -544,26 +439,19 @@
   },
   "type": "Feature",
   "properties": {
+    "name": "Одинцово",
     "year": 2009,
     "ownerLayer": "mcd",
-    "ownerElement": "mcd1",
-    "color": "#4f258a",
-    "popupData": {
-      "name": "Одинцово",
-      "text": "Информация о станции и рейсах"
-    }
+    "ownerElement": "mcd1"
   }
 }
 			]
 		}
 	},
 	"layout": {
-	},
-	"paint": {
-		"circle-radius": {
-			"base": 5,
-			"stops": [[12, 5], [22, 180]]
-		},
-		"circle-color": { "type": "identity", "property": "color" }
+		"text-field": { "type": "identity", "property": "name" },
+		"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+		"text-offset": [0, 0.6],
+		"text-anchor": "top"
 	}
 }

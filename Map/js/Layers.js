@@ -12,9 +12,9 @@ function LayerService(map){
 				$.each(jsonObj.layers,function(index, value){
 					self._map.addLayer(value);
 					addEvents(value.id);
-					
 				});
 				
+				updateLayersPosition(jsonObj.layers);
 				return jsonObj.info;
 			}
 		}
@@ -25,38 +25,105 @@ function LayerService(map){
 	}
 	
 	function addEvents(layerId){
-		map.on('click', layerId, function (e) {
-			var coordinates = e.features[0].geometry.coordinates.slice();
-			if (!coordinates || coordinates.length != 2 || coordinates[0].length || coordinates[1].length){
-				coordinates = e.lngLat;
-			}
-			var layer = self._map.getLayer(layerId);
-			var popupData = JSON.parse(e.features[0].properties.popupData);
-			var popupId = 'map-box-popupId';
-			var popupHtml = '<div id="' + popupId + '">' + layer.metadata.popupHtml + '</div>';
-			
-			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-				coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-			}
-			
-			if($('#' + popupId)[0]){
-				return;
-			}
-			
-			new mapboxgl.Popup()
-				.setLngLat(coordinates)
-				.setHTML(popupHtml)
-				.addTo(map);
+		var layer = self._map.getLayer(layerId);
+		if (layer && layer.metadata.popupHtml){
+			map.on('click', layerId, function (e) {
+				var coordinates = e.features[0].geometry.coordinates.slice();
+				if (!coordinates || coordinates.length != 2 || coordinates[0].length || coordinates[1].length){
+					coordinates = e.lngLat;
+				}
+				var layer = self._map.getLayer(layerId);
+				var popupData = JSON.parse(e.features[0].properties.popupData);
+				var popupId = 'map-box-popupId';
+				var popupHtml = '<div id="' + popupId + '">' + layer.metadata.popupHtml + '</div>';
 				
-			ko.applyBindings(popupData, $('#' + popupId)[0]);
-		});
-		self._map.on('mouseenter', layerId, function () {
-			map.getCanvas().style.cursor = 'pointer';
-		});
+				while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+					coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+				}
+				
+				if($('#' + popupId)[0]){
+					return;
+				}
+				
+				new mapboxgl.Popup()
+					.setLngLat(coordinates)
+					.setHTML(popupHtml)
+					.addTo(map);
+					
+				ko.applyBindings(popupData, $('#' + popupId)[0]);
+			});
+			self._map.on('mouseenter', layerId, function () {
+				map.getCanvas().style.cursor = 'pointer';
+			});
 
-		self._map.on('mouseleave', layerId, function () {
-			map.getCanvas().style.cursor = '';
-		});
+			self._map.on('mouseleave', layerId, function () {
+				map.getCanvas().style.cursor = '';
+			});
+		}
+	}
+	
+	function updateLayersPosition(layersJson){
+		var roots = findRoots(layersJson);
+		
+		for (var i = 0; i < roots.length; i++){
+			var order = self.getLayersOrder(roots[i]);
+			if(order && order.length){
+				self._map.moveLayer(order[order.length - 1]);
+				for(var j = order.length - 2; j >= 0; j--){
+					self._map.moveLayer(order[j], order[j + 1])
+				}
+			}
+		}
+	}
+	
+	function findRoots(layersJson){
+		var roots = [];
+		
+		for (var i = 0; i < layersJson.length; i++){
+			if (!layersJson[i].metadata.parentLayers || !layersJson[i].metadata.parentLayers.length){
+				roots.push(layersJson[i].id);
+			}
+		}
+		
+		return roots;
+	}
+	
+	self.getLayersOrder = function(rootId){
+		var result = [];
+		var lastLayerId;
+		var obj = self.getLayerObject(rootId);
+		
+		if (obj){	
+			result.push(rootId);
+
+			obj.childLayers.sort(function(a, b){
+				if (a.order){
+					if(b.order){
+						if (a.order > b.order){
+							return 1;
+						}
+						if (a.order < b.order){
+							return -1;
+						}
+						return 0;
+					}
+					
+					return 1;
+				}
+				
+				if (b.order){
+					return -1;
+				}
+				
+				return 0;
+			});
+			
+			for (var i = 0; i < obj.childLayers.length; i++){
+				result = result.concat(self.getLayersOrder(obj.childLayers[i]));
+			}
+		}
+		
+		return result;
 	}
 	
 	self.getLayerObjectTree = function(rootLayerId){
@@ -68,7 +135,6 @@ function LayerService(map){
 				if(obj){
 					result.childLayerObjects.push(obj);
 				}
-				
 			});
 			
 			return result;
@@ -118,12 +184,12 @@ function LayerService(map){
 	};
 	
 	self.hideLayerTree = function(layerId, only){
-		var tree = self.getLayerObjectTree(layerId);
-		if(tree){
-			hideLayer(tree.layerId);
+		var obj = self.getLayerObject(layerId);
+		if(obj){
+			hideLayer(obj.layerId);
 			if (!only){
-				for (var i = 0; i < tree.childLayers.length; i++){
-					self.hideLayerTree(tree.childLayers[i]);
+				for (var i = 0; i < obj.childLayers.length; i++){
+					self.hideLayerTree(obj.childLayers[i], false);
 				}
 			}
 
@@ -132,12 +198,12 @@ function LayerService(map){
 	}
 	
 	self.showLayerTree = function(layerId, only){
-		var tree = self.getLayerObjectTree(layerId);
-		if(tree){
-			showLayer(tree.layerId);
+		var obj = self.getLayerObject(layerId);
+		if(obj){
+			showLayer(obj.layerId);
 			if (!only){
-				for (var i = 0; i < tree.childLayers.length; i++){
-					self.showLayerTree(tree.childLayers[i]);
+				for (var i = 0; i < obj.childLayers.length; i++){
+					self.showLayerTree(obj.childLayers[i], false);
 				}
 			}
 		}
