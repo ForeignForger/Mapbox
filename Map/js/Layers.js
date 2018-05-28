@@ -1,5 +1,6 @@
 function LayerService(map){
 	var self = this;
+	var filterService = new FilterService();
 	self._map = map;
 	
 	self.addLayers = function(jsonElementId){
@@ -222,83 +223,48 @@ function LayerService(map){
 		self._map.setLayoutProperty(layerId, 'visibility', 'visible');
 	}
 	
-	self.addFilters = function(layerId, filters){
+	//реализовать логику когда объект может принадлежать нескольким элементам
+	self.addFilter = function(layerId, filter){
 		var obj = self.getLayerObject(layerId);
 		
-		if(obj){
-			var filter = self._map.getFilter(layerId);
+		if (obj){
+			var oldFilter = self._map.getFilter(layerId);
+			var uniteFilter;
 			
-			for (var i = 0; i < filters.length; i++){
-				filter = addFilter(filter, filters[i]);
+			if (!oldFilter){
+				uniteFilter = filterService.getUniteFilter("all", []);
+			}
+			else {
+				uniteFilter = filterService.getUniteFilter(oldFilter[0], oldFilter.slice(1));
 			}
 			
-			self._map.setFilter(layerId, filter);
+			uniteFilter.addFilter(filter);
+			
+			self._map.setFilter(layerId, uniteFilter.get());
 			
 			for (var j = 0; j < obj.childLayers.length; j++){
-				self.addFilters(obj.childLayers[j], filters);
+				self.addFilter(obj.childLayers[j], filter);
 			}
 		}
 	};
 	
-	self.removeFilters = function(layerId, filters){
+	self.removeFilter = function(layerId, filter){
 		var obj = self.getLayerObject(layerId);
 		
 		if(obj){
-			var filter = self._map.getFilter(layerId);
+			var oldFilter = self._map.getFilter(layerId);
 			
-			for (var i = 0; i < filters.length; i++){
-				filter = removeFilter(filter, filters[i]);
+			if (!oldFilter){
+				return;
 			}
 			
-			self._map.setFilter(layerId, filter);
+			uniteFilter = filterService.getUniteFilter(oldFilter[0], oldFilter.slice(1))
+			uniteFilter.removeFilter(filter);
+			self._map.setFilter(layerId, uniteFilter.get());
 			
 			for (var j = 0; j < obj.childLayers.length; j++){
-				self.removeFilters(obj.childLayers[j], filters);
+				self.removeFilter(obj.childLayers[j], filter);
 			}
 		}
 	};
-
-	function addFilter(oldFilter, newFilter){
-		if (!oldFilter){
-			oldFilter = ["all"];
-		}
-		
-		oldFilter.push(newFilter);
-		return oldFilter;
-	}
-	
-	function removeFilter(oldFilter, filter){
-		if (oldFilter && oldFilter.length){
-			var result  = [oldFilter[0]];
-			
-			for (var i = 1; i < oldFilter.length; i++){
-				if(!equalFilters(oldFilter[i], filter)){
-					result.push(oldFilter[i]);
-				}
-			}
-
-			return result;
-		}
-		
-		return undefined;
-	}
-	
-	function equalFilters(filterA, filterB){
-		if (filterA && filterB && filterA.length === filterB.length){
-			for(var i = 0; i < filterA.length; i++){
-				if (Array.isArray(filterA[i]) && Array.isArray(filterB[i])){
-					if (!equalFilters(filterA[i], filterB[i])){
-						return false;
-					}
-				}
-				else if(filterA[i] != filterB[i]){
-					return false;
-				}
-			}
-			
-			return true;
-		}
-		
-		return false;
-	}
 }

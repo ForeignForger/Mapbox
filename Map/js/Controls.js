@@ -35,6 +35,7 @@ function ControlService(map){
 	}
 	controlFunctionalityObjects["main-control"] = function(controlInfo){
 		var layerService = new LayerService(self._map);
+		var filterService = new FilterService();
 		this.mainLayer = self.layerService.getLayerObjectTree(controlInfo.layerId);
 		this.layers = {};
 		getLayersDictionary(this.mainLayer, this.layers);
@@ -42,33 +43,19 @@ function ControlService(map){
 		this.toggleElementFilter = function(control, elementId, layerId){
 			var layer = control.layers[layerId];
 			var element = layer.elements[elementId];
+			var filters = [];
+			filters.push(filterService.getFilter("!=", "ownerLayer", layerId));
+			filters.push(filterService.getFilter("!=", "ownerElement", elementId));
+			var uniteFilter = filterService.getUniteFilter("any", filters);
+			
 			if(element.IsElementShown()){
-				layerService.addFilters(layerId, uniteFilters("any", [
-																		getFilter("ownerLayer",  "!=", layerId), 
-																		getFilter("ownerElement",  "!=", elementId)
-																	]));
+				layerService.addFilter(layerId, uniteFilter);
 				element.IsElementShown(false);
 			}
 			else{
-				layerService.removeFilters(layerId, uniteFilters("any", [
-																		getFilter("ownerLayer",  "!=", layerId), 
-																		getFilter("ownerElement",  "!=", elementId)
-																	]));
+				layerService.removeFilter(layerId, uniteFilter);
 				element.IsElementShown(true);
-			}
-			
-			function uniteFilters(action, filters){
-				var result = [[action]];
-				for(var i = 0; i < filters.length; i++){
-					result[0].push(filters[i]);
-				}
-				return result;
-			}
-			
-			function getFilter(_property, _action, _value){
-				return [_action, _property, _value];
-			}
-			
+			}	
 		}
 		
 		this.showHideLayer = function(control, layerId){
