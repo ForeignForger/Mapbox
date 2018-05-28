@@ -444,6 +444,585 @@
     "ownerLayer": "mcd",
     "ownerElement": "mcd1"
   }
+},
+{
+  "type": "Feature",
+  "properties": {
+	"name": "Нахабино",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2",
+    "color": "#185223"
+  },
+  "geometry": {
+    "coordinates": [
+      37.184938,
+      55.841573
+    ],
+    "type": "Point"
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+	"name": "Аникеевка",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2",
+    "color": "#185223"
+  },
+  "geometry": {
+    "coordinates": [
+      37.219773,
+      55.832107
+    ],
+    "type": "Point"
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+	"name": "Опалиха",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  },
+  "geometry": {
+    "coordinates": [
+      37.246811,
+      55.823331
+    ],
+    "type": "Point"
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+  	"name": "Красногорск",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  },
+  "geometry": {
+    "coordinates": [
+      37.303177,
+      55.814721
+    ],
+    "type": "Point"
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+  	"name": "Павшино",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  },
+  "geometry": {
+    "coordinates": [
+      37.339546,
+      55.8148
+    ],
+    "type": "Point"
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+  	"name": "Пойма",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  },
+  "geometry": {
+    "coordinates": [
+      37.361009,
+      55.822328
+    ],
+    "type": "Point"
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Волоколамская",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  },
+  "geometry": {
+    "coordinates": [
+      37.383689,
+      55.832218
+    ],
+    "type": "Point"
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Трикотажная",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  },
+  "geometry": {
+    "coordinates": [
+      37.399328,
+      55.833064
+    ],
+    "type": "Point"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.44084083102152,
+      55.827065165985005
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Тушино",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.45902214170704,
+      55.81113436935789
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Щукинская",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.4981274928287,
+      55.81498669903263
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Ленинградская",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.52486550713451,
+      55.81543461852186
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Красный Балтиец",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.55322097104013,
+      55.80553287065956
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Гражданская",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.57823929873621,
+      55.80792316736432
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Дмитровская",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2",
+    "color": "#185223"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.61332907366321,
+      55.80053468426851
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Марьина роща",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.63872609957312,
+      55.79384724781653
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Ржевская",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.65146675746638,
+      55.776308965549276
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Каланчевская",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.662141192209475,
+      55.757778139821
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Курский вокзал",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.68926282015204,
+      55.745160762465986
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Москва-Товарная",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.70263240734414,
+      55.733661484847715
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Калитники",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.715905285531136,
+      55.72272348646888
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Новохохловская",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.72947564395665,
+      55.70792645428412
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Текстильщики",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.73194375461506,
+      55.69331415204297
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Печатники",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.7339846851971,
+      55.68487805741506
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Люблино",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.72827074948475,
+      55.67418604818823
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Депо",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.71628302855879,
+      55.66082885757285
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Перерва",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.690091597687854,
+      55.64127166842121
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Москворечье",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.668418003620474,
+      55.61805643549121
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Царицыно",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.64209315649384,
+      55.61112624138747
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Котляково",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.63194198339002,
+      55.60275459667184
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Покровская",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.61536404389662,
+      55.59037305801823
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Красный Строитель",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.611604305322714,
+      55.57127968851918
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Битца",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.57066664679979,
+      55.541371296465854
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Бутово",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.56221283327719,
+      55.51012582007459
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Щербинка",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.55548017497827,
+      55.47046749048408
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Силикатная",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
+},
+{
+  "geometry": {
+    "coordinates": [
+      37.56532255248433,
+      55.43182718520595
+    ],
+    "type": "Point"
+  },
+  "type": "Feature",
+  "properties": {
+    "name": "Подольск",
+    "year": 2010,
+    "ownerLayer": "mcd",
+    "ownerElement": "mcd2"
+  }
 }
 			]
 		}
