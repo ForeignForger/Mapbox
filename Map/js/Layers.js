@@ -96,14 +96,30 @@ function LayerService(map){
 		
 		if (obj){	
 			result.push(rootId);
-
 			obj.childLayers.sort(function(a, b){
-				if (a.order){
-					if(b.order){
-						if (a.order > b.order){
+				var aObj = self.getLayerObject(a);
+				var bObj = self.getLayerObject(b);
+				aObj = aObj && aObj.level ? aObj.level : undefined;
+				bObj = bObj && bObj.level ? bObj.level : undefined;
+				
+				if (aObj && !bObj){
+					return 1;
+				}
+				
+				if (!aObj && bObj){
+					return -1;
+				}
+				
+				if (!aObj && !bObj){
+					return 0;
+				}
+				
+				if (aObj.order){
+					if(bObj.order){
+						if (aObj.order > bObj.order){
 							return 1;
 						}
-						if (a.order < b.order){
+						if (aObj.order < bObj.order){
 							return -1;
 						}
 						return 0;
@@ -112,7 +128,7 @@ function LayerService(map){
 					return 1;
 				}
 				
-				if (b.order){
+				if (bObj.order){
 					return -1;
 				}
 				

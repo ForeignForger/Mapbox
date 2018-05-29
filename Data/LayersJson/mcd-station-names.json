@@ -6,7 +6,10 @@
 		"parentLayers": ["mcd-stations"],
 		"childLayers": [],
 		"layerName": "Название станции",
-		"levelOrder": 1
+		"level":{
+			"relative": "mcd-stations",
+			"order": 2
+		}
 	},
 	"source": {
 		"type": "geojson",

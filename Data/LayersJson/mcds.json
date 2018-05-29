@@ -21,9 +21,11 @@
 			}
 		],
 		"parentLayers": [],
-		"childLayers": ["mcd-roads", "mcd-stations"],
+		"childLayers": ["mcd-roads", "mcd-stations", "moscow"],
 		"popupHtml": "",
 		"layerName": "Схема Московских МЦД",
-		"levelOrder": 0
+			"level":{
+				"order": 0
+			}
 	}
 }
