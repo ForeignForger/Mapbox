@@ -43,19 +43,42 @@ function ControlService(map){
 		this.toggleElementFilter = function(control, elementId, layerId){
 			var layer = control.layers[layerId];
 			var element = layer.elements[elementId];
-			var filters = [];
-			filters.push(filterService.getFilter("!=", "ownerLayer", layerId));
-			filters.push(filterService.getFilter("!=", "ownerElement", elementId));
-			var uniteFilter = filterService.getUniteFilter("any", filters);
+			var filters = getFilters(control, layerId ,elementId);
 			
-			if(element.IsElementShown()){
-				layerService.addFilter(layerId, uniteFilter);
+			if (element.IsElementShown()){
+				for (var i = 0; i < filters.length; i++){
+					layerService.addFilter(layerId, filters[i]);
+				}
+				
 				element.IsElementShown(false);
 			}
 			else{
-				layerService.removeFilter(layerId, uniteFilter);
+				for (var i = 0; i < filters.length; i++){
+					layerService.removeFilter(layerId, filters[i]);
+				}
 				element.IsElementShown(true);
 			}	
+		}
+		
+		function getFilters(control, layerId, elementId){
+			var result = [];
+			var layer = control.layers[layerId];
+			var elements = layer.elements;
+			var ownerFilter = filterService.getFilter("!=", "ownerLayer", layerId);
+			var elementFilters = [filterService.getFilter("!=", "ownerElement", elementId)];
+			
+			for (var key in elements){
+				if (key != elementId && !elements[key].IsElementShown()){
+					var el = elementId < elements[key].elementId ? elementId + ";" + key : key + ";" + elementId;
+					elementFilters.push(filterService.getFilter("!=", "ownerElement", el));
+				}
+			}
+			
+			for (var i = 0; i < elementFilters.length; i++){
+				result.push(filterService.getUniteFilter("any", [ownerFilter, elementFilters[i]]));
+			}
+			
+			return result;
 		}
 		
 		this.showHideLayer = function(control, layerId){

@@ -223,7 +223,6 @@ function LayerService(map){
 		self._map.setLayoutProperty(layerId, 'visibility', 'visible');
 	}
 	
-	//реализовать логику когда объект может принадлежать нескольким элементам
 	self.addFilter = function(layerId, filter){
 		var obj = self.getLayerObject(layerId);
 		
