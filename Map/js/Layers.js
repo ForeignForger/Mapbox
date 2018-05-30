@@ -191,7 +191,8 @@ function LayerService(map){
 			if(layersInfo[obj.layerId] && layersInfo[obj.layerId].IsLayerShown()){
 				showLayer(obj.layerId);
 			}else{
-				hideLayer(obj.layerId);
+				self.hideLayerTree(obj.layerId);
+				return;
 			}
 			
 			for (var i = 0; i < obj.childLayers.length; i++){
