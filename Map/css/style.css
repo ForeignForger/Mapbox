@@ -66,7 +66,8 @@
 .control-panel.top-right .control-area .control-name{
 	color: #ededed;
 }
-.control-panel.top-right .control-area .control-name:hover{
+.control-panel.top-right .control-area .control-name:hover,
+.control-panel.top-right .control-area .control-name:active{
 	color: #FFF;
 	background-color: #8b62ac;
 }
@@ -94,7 +95,8 @@
     border-width: 0 0 2px 0;
 	border-color: #131c31;
 }
-.control-panel.top-right .control-area .control-list .control-list-element:hover{
+.control-panel.top-right .control-area .control-list .control-list-element:hover,
+.control-panel.top-right .control-area .control-list .control-list-element:active{
 	color: #FFF;
 	background-color: #8b62ac;
 }
@@ -172,7 +174,8 @@
 	cursor: pointer;
 }
 
-.main-control .layer-name.active:hover{
+.main-control .layer-name.active:hover,
+.main-control .layer-name.active:active{
 	color: #FFF;
 }
 
