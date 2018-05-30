@@ -36,7 +36,7 @@ function ControlService(map){
 	controlFunctionalityObjects["main-control"] = function(controlInfo){
 		var layerService = new LayerService(self._map);
 		var filterService = new FilterService();
-		this.mainLayer = self.layerService.getLayerObjectTree(controlInfo.layerId);
+		this.mainLayer = self.layerService.getLayerObjectTree(controlInfo.controlData.layerId);
 		this.layers = {};
 		getLayersDictionary(this.mainLayer, this.layers);
 		
@@ -128,11 +128,34 @@ function ControlService(map){
 			
 			for(var i = 0; i < elements.length; i++){
 				result[elements[i].elementId] = {
-					IsElementShown: ko.observable(true),// может быть проблема с фильтрами заданными по умолчанию, самое простое решение чистить их.
+					IsElementShown: ko.observable(true),
 				}
 			}
 			
 			return result;
 		}
 	};
+	controlFunctionalityObjects["time-line-control"] = function(controlInfo){
+		this.measure = "px";
+		this.oneYearHeight = 30;
+		
+		this.years = ko.observableArray(getYearsArray(controlInfo.controlData.years.sort()));
+		this.controlHeight = ko.observable((this.years().length + 2) * this.oneYearHeight + this.measure);
+		this.currentStep = ko.observable(0);
+		
+		function getYearsArray(years){
+			var result = [];
+			
+			for(var i = 0; i < years.length; i++){
+				result.push(new Year(years[i]))
+			}
+			
+			return result;
+		}
+		
+		function Year(year){
+			this.value = ko.observable(year);
+			this.IsSelected = ko.observable(false);
+		}
+	}
 }

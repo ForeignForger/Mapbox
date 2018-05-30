@@ -6,10 +6,13 @@
 					"panelHtml": "<div></div>",
 					"controls":	[
 						{
-							"layerId": "mcd",
-							"controlId": "main-control",
+							"controlId": "",
 							"controlHtml": "<div></div>",
-							"controlName": "Главный котроллер"
+							"controlName": ""
+							"controlData":{
+								"layerId": "mcd",
+								"years": [2009, 2010]
+							}
 						}
 					]
 				}

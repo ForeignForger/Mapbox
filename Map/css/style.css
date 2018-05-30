@@ -194,3 +194,21 @@
 	margin-left: 5px;
 	background-color: #bed588;
 }
+
+.time-line-control{
+	padding: 15px 10px 15px 15px;
+}
+
+.time-line-control .time-input{
+	float:left;
+	transform-origin: 15px 15px;
+	transform: rotate(90deg);
+}
+
+.time-line-control .year-list{
+	float: left;
+}
+
+.time-line-control .year-list .year{
+	text-align: center;
+}
