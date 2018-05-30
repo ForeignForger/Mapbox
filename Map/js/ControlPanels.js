@@ -88,6 +88,7 @@ function ControlPanelService(map, info){
 					if (panel.selectedControl){
 						if (panel.selectedControl().controlId() != controlId()){
 							panel.applyPanelBindings(controls[i]);
+							panel.IsControlListOpen(false);
 						}
 						else{
 							break;
@@ -95,6 +96,7 @@ function ControlPanelService(map, info){
 					}
 					else{
 						panel.applyPanelBindings(controls[i]);
+						panel.IsControlListOpen(false);
 					}
 				}
 			}

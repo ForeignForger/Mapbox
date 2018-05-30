@@ -1030,6 +1030,7 @@
 			]
 		}
 	},
+	"minzoom": 10,
 	"layout": {
 		"text-field": { "type": "identity", "property": "name" },
 		"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],

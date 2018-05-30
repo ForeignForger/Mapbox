@@ -1282,10 +1282,11 @@
 	},
 	"layout": {
 	},
+	"minzoom": 9,
 	"paint": {
 		"circle-radius": {
-			"base": 5,
-			"stops": [[12, 5], [22, 180]]
+			"base": 3,
+			"stops": [[12, 5], [15, 10]]
 		},
 		"circle-color": { "type": "identity", "property": "color" }
 	}

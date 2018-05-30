@@ -43,8 +43,12 @@
 		"line-join": "round",
 		"line-cap": "round"
 	},
+	"minzoom": 8,
 	"paint": {
 		"line-color": { "type": "identity", "property": "color" },
-		"line-width": 4
+		"line-width": {
+			"base": 2,
+			"stops": [[10, 3], [15, 2]]
+		}
 	}
 }

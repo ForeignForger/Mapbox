@@ -260,6 +260,7 @@
 			]
 		}
 	},
+	"minzoom": 7,
 	"paint":{
 		"fill-color": "#ADD8E6",
 		"fill-opacity": 0.5,
