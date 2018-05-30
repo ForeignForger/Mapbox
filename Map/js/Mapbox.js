@@ -55,6 +55,8 @@ function Mapbox(){
 	}
 	
 	function addControls(info){
+		self.map.addControl(new mapboxgl.FullscreenControl(), "bottom-right");
+		self.map.addControl(new mapboxgl.NavigationControl(), "top-left");
 		var controlService = new ControlPanelService(self.map, info);
 		controlService.addControlPanelsAtMap();
 	}
