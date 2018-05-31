@@ -142,7 +142,7 @@ function ControlService(map){
 		this.oneYearHeight = 30;
 		
 		this.layerId = controlInfo.controlData.layerId;
-		this.years = ko.observableArray(getYearsArray(controlInfo.controlData.years.sort()));
+		this.years = ko.observableArray(getYearsArray(controlInfo.controlData.years.sort().reverse()));
 		this.controlHeight = ko.observable((this.years().length) * this.oneYearHeight + this.measure);
 		this.currentStep = ko.observable(0);
 		this.changeYear = function(){
@@ -203,7 +203,7 @@ function ControlService(map){
 				if(years[i].IsSelected()){
 					var filters = [];
 					filters.push(filterService.getFilter("!has", "year"));
-					filters.push(filterService.getFilter(">=", "year", years[i].value()));
+					filters.push(filterService.getFilter("<=", "year", years[i].value()));
 					result.push(filterService.getUniteFilter("any", filters));
 				}
 			}
