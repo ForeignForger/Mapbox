@@ -136,12 +136,23 @@ function ControlService(map){
 		}
 	};
 	controlFunctionalityObjects["time-line-control"] = function(controlInfo){
+		var filterService = new FilterService();
+		var layerService = new LayerService(self._map);
 		this.measure = "px";
 		this.oneYearHeight = 30;
 		
+		this.layerId = controlInfo.controlData.layerId;
 		this.years = ko.observableArray(getYearsArray(controlInfo.controlData.years.sort()));
-		this.controlHeight = ko.observable((this.years().length + 2) * this.oneYearHeight + this.measure);
+		this.controlHeight = ko.observable((this.years().length) * this.oneYearHeight + this.measure);
 		this.currentStep = ko.observable(0);
+		this.changeYear = function(){
+			var years = this.years();
+			if (years){
+				removeFilters.call(this, years)
+				selectYear.call(this, years);
+				addFilters.call(this, years);
+			}
+		}
 		
 		function getYearsArray(years){
 			var result = [];
@@ -157,5 +168,49 @@ function ControlService(map){
 			this.value = ko.observable(year);
 			this.IsSelected = ko.observable(false);
 		}
+		
+		function selectYear(years){
+			var step = Math.round(this.currentStep());
+
+			if (!years[step].IsSelected()){
+				for(var i = 0; i < years.length; i++){
+					years[i].IsSelected(false);
+				}
+				
+				years[step].IsSelected(true);
+			}
+		}
+		
+		function removeFilters(years){
+			var filters = getFilters(years);
+			
+			for (var i = 0; i < filters.length; i++){
+				layerService.removeFilter(this.layerId, filters[i]);
+			}
+		}
+		
+		function addFilters(years){
+			var filters = getFilters(years);
+			
+			for (var i = 0; i < filters.length; i++){
+				layerService.addFilter(this.layerId, filters[i]);
+			}
+		}
+		function getFilters(years){
+			var result = [];
+			
+			for (var i = 0; i < years.length; i++){
+				if(years[i].IsSelected()){
+					var filters = [];
+					filters.push(filterService.getFilter("!has", "year"));
+					filters.push(filterService.getFilter(">=", "year", years[i].value()));
+					result.push(filterService.getUniteFilter("any", filters));
+				}
+			}
+			
+			return result;
+		}
+		
+		this.changeYear();
 	}
 }

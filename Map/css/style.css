@@ -206,9 +206,20 @@
 }
 
 .time-line-control .year-list{
+	position: relative;
 	float: left;
 }
 
 .time-line-control .year-list .year{
-	text-align: center;
+	height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.time-line-control .year-list .year.active{
+	color: #FFF;
+}
+
+.time-line-control .year-list .year.active ~ .year{
+	color: #AAA;
 }

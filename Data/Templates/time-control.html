@@ -1,9 +1,0 @@
-<div class='time-line-control'>
-	<div class='container'  data-bind='style: {height: controlHeight}'>
-		<input class='time-input' type='range' orient='vertical' min='0' step='0.01' data-bind='value: currentStep(), attr: {max: years().length - 1}, style: {width: controlHeight}'/>
-		<div class='year-list' data-bind='foreach: years'>
-			<div class='year' data-bind='text: value, css: { active: IsSelected}'>
-			</div>
-		</div>
-	</div>
-</div>

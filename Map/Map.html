@@ -35,11 +35,11 @@
 						{
 							
 							"controlId": "time-line-control",
-							"controlHtml": "<div class='time-line-control'><div class='container'  data-bind='style: {height: controlHeight}'><input class='time-input' type='range' orient='vertical' min='0' step='0.01' data-bind='value: currentStep(), attr: {max: years().length - 1}, style: {width: controlHeight}'/><div class='year-list' data-bind='foreach: years'><div class='year' data-bind='text: value, css: { active: IsSelected}'></div></div></div></div>",
+							"controlHtml": "<div class='time-line-control'><div class='container'  data-bind='style: {height: controlHeight}'><input class='time-input' type='range' orient='vertical' min='0' step='0.01' data-bind='value: currentStep, event: { change: changeYear.bind($data) },attr: {max: years().length - 1}, style: {width: controlHeight}'/><div class='year-list' data-bind='foreach: years, style: {left: -1 * ((years().length - 2) * oneYearHeight)}'><div class='year' data-bind='text: value, css: { active: IsSelected}'></div></div></div></div>",
 							"controlName": "Фильтрация по времени",
 							"controlData":{
 								"layerId": "mcd",
-								"years": [2009, 2010]
+								"years": [2008, 2009, 2010, 2011]
 							}
 						}
 					]
