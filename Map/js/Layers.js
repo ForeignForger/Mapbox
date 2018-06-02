@@ -1,6 +1,7 @@
 function LayerService(map){
 	var self = this;
 	var filterService = new FilterService();
+	var layerPopupService = new LayerPopupService();
 	self._map = map;
 	
 	self.addLayers = function(jsonElementId){
@@ -34,7 +35,7 @@ function LayerService(map){
 					coordinates = e.lngLat;
 				}
 				var layer = self._map.getLayer(layerId);
-				var popupData = JSON.parse(e.features[0].properties.popupData);
+				var popupData = layerPopupService.getLayerPopup(layerId, JSON.parse(e.features[0].properties.popupData));
 				var popupId = 'map-box-popupId';
 				var popupHtml = '<div id="' + popupId + '">' + layer.metadata.popupHtml + '</div>';
 				
