@@ -8,16 +8,29 @@ function LayerPopupService(layerService){
 			return new layerPopups[layerId](popupData);
 		}
 		
+		popupData.initialize = popupData.initialize || defaultInitialize;
 		return popupData;
 	}
 	
+	function defaultInitialize(add){
+		add();
+	}
+	
 	layerPopups["mcd-stations"] = function(data){
+		var layerId = "mcd-stations";
 		var imagesService = new ImagesService();
-		this.icon = imagesService.getIcon("mcd-stations");
+		this.icon = imagesService.getIcon(layerId);
 		this.images = getImages(data.images);
 		this.title = data.name;
 		this.timeTable = getTimeTable(data.timeTable);
 		this.info = data.text;
+		this.initialize = function(add){
+			add();
+			if (this.images && this.images().length > 1){
+				initializeCaroulsel(layerId);
+			}
+		};
+		
 		function getImages(images){
 			var result = ko.observableArray([]);
 			if(!images || !images.length){

@@ -52,8 +52,9 @@ function LayerService(map){
 					.setHTML(popupHtml)
 					.addTo(map);
 				
-				ko.applyBindings(popupData, $('#' + popupId)[0]);
-				initializeCaroulsel(layerId);
+				popupData.initialize(function (){
+					ko.applyBindings(popupData, $('#' + popupId)[0])
+				});
 			});
 			self._map.on('mouseenter', layerId, function () {
 				map.getCanvas().style.cursor = 'pointer';
