@@ -1,0 +1,21 @@
+{
+	"id": "mcd-station-infrastructures",
+	"type": "symbol",
+	"source": {
+		"type": "geojson",
+		"data": {
+			"type": "FeatureCollection",
+			"features": []
+		}
+	},
+	"metadata":{
+		"elements": [],
+		"parentLayers": ["mcd-stations"],
+		"childLayers": ["mcd-station-platforms"],
+		"layerName": "Инфраструктура",
+		"level":{
+			"relative": "mcd-stations",
+			"order": 1
+		}
+	}
+}

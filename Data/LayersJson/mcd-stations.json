@@ -4,7 +4,7 @@
 	"metadata":{
 		"elements": [],
 		"parentLayers": ["mcd"],
-		"childLayers": ["mcd-station-names"],
+		"childLayers": ["mcd-station-names", "mcd-station-infrastructures"],
 		"popupHtml": "<div><div>This is <span data-bind='text: name'></span></div><div data-bind='text: text'></div></div>",
 		"layerName": "Станции",
 		"level":{
