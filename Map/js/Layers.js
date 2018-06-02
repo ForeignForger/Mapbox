@@ -51,8 +51,9 @@ function LayerService(map){
 					.setLngLat(coordinates)
 					.setHTML(popupHtml)
 					.addTo(map);
-					
+				
 				ko.applyBindings(popupData, $('#' + popupId)[0]);
+				initializeCaroulsel(layerId);
 			});
 			self._map.on('mouseenter', layerId, function () {
 				map.getCanvas().style.cursor = 'pointer';

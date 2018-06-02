@@ -270,15 +270,22 @@
 }
 
 .popup .popup-body .images{
+	box-sizing: content-box;
 	float: left;
 	width: 150px;
 	height: 200px;
 	border-style: solid;
     border-width: 1px;
 	border-color: #283c68;
+	overflow: hidden;
+}
+.popup .popup-body .images .image{
+	width: 150px;
+	height: 200px;
+	display: inline-block;
 }
 .popup .popup-body .time-table{
-	width: 200px;
+	width: 196px;
 	float: left;
 }
 
@@ -288,11 +295,16 @@
 .popup .popup-body .time-table .column{
 	font-size: 13px;
 	padding-left: 5px;
-	width: 100px;
+	width: 98px;
 	display: inline-block;
 }
 .popup .popup-body .info{
 	padding-top: 10px;
+	padding-left: 5px;
 	clear: both;
 	width: 100%;
+}
+.owl-item{
+	cursor: pointer;
+	display: inline;
 }
