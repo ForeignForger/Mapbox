@@ -12,11 +12,11 @@ function FilterService(){
 		this.IsFilter = true;
 		
 		this.get = function (){
-			return this.value ? [this.action, this.property, this.value] : [this.action, this.property];
+			return this.value !== undefined ? [this.action, this.property, this.value] : [this.action, this.property];
 		};
 		
 		this.Equals = function(filter){
-			return filter && this.action === filter.action && this.property === filter.property && (this.value === filter.value || !this.value && !filter.value);
+			return filter && this.action === filter.action && this.property === filter.property && (this.value === filter.value || this.value === undefined && filter.value === undefined);
 		};
 	}
 	
