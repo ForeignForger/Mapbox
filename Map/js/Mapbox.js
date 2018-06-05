@@ -4,7 +4,7 @@ function Mapbox(){
 	self.settings = {
 		containerId: 'mapbox',
 		layersJsonContainerId: 'mapbox-layers-json',
-		style: 'mapbox://styles/groond/cjguv5eo300352smn4qyyf1l3',
+		style: 'mapbox://styles/groond/cji09walv4c4g2sla9irb1790',
 		zoom: 10,
 		center: [37.618423, 55.751244],
 	};

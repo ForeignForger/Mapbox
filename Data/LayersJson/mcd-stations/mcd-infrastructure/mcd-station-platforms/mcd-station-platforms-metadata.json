@@ -1,0 +1,14 @@
+{
+	"id": "mcd-station-platforms",
+	"metadataOnly": true,
+	"metadata":{
+		"elements": [],
+		"parentLayers": ["mcd-station-infrastructures"],
+		"childLayers": [],
+		"layerName": "Платформы",
+		"level":{
+			"relative": "mcd-station-infrastructures",
+			"order": 1
+		}
+	}
+}

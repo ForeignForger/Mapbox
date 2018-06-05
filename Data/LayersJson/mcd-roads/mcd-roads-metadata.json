@@ -1,0 +1,14 @@
+{
+	"id": "mcd-roads",
+	"metadataOnly":true,
+	"metadata":{
+		"elements": [],
+		"parentLayers": ["mcd"],
+		"childLayers": ["mcd-road-speedInfos"],
+		"layerName": "Дороги",
+		"level":{
+			"relative": "mcd",
+			"order": 2
+		}
+	}
+}

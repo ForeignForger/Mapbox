@@ -1,0 +1,14 @@
+{
+	"id": "mcd-station-names",
+	"metadataOnly": true,
+	"metadata":{
+		"elements": [],
+		"parentLayers": ["mcd-stations"],
+		"childLayers": [],
+		"layerName": "Название станции",
+		"level":{
+			"relative": "mcd-stations",
+			"order": 2
+		}
+	}
+}

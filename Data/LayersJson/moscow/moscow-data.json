@@ -1,19 +1,4 @@
 {
-	"id": "moscow",
-	"type": "fill",
-	"metadata":{
-		"elements": [],
-		"parentLayers": ["mcd"],
-		"childLayers": [],
-		"layerName": "Административные округа",
-		"level":{
-			"relative": "mcd",
-			"order": 0
-		}
-	},
-	"source":{
-		"type": "geojson",
-		"data":{
 			"type": "FeatureCollection",
 			"features": [
 {
@@ -256,14 +241,5 @@
     "type": "Polygon"
   }
 }
-
-			]
-		}
-	},
-	"minzoom": 7,
-	"paint":{
-		"fill-color": "#ADD8E6",
-		"fill-opacity": 0.5,
-		"fill-outline-color": "#225f72"
-	}
+	]
 }

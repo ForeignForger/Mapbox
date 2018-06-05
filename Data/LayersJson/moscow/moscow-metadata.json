@@ -1,0 +1,14 @@
+{
+	"id": "moscow",
+	"metadataOnly": true,
+	"metadata":{
+		"elements": [],
+		"parentLayers": ["mcd"],
+		"childLayers": [],
+		"layerName": "Административные округа",
+		"level":{
+			"relative": "mcd",
+			"order": 0
+		}
+	}
+}

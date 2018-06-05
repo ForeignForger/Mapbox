@@ -1,0 +1,25 @@
+{
+	"id": "mcd-station-platforms",
+	"type": "fill-extrusion",
+	"metadata":{
+		"elements": [],
+		"parentLayers": ["mcd-station-infrastructures"],
+		"childLayers": [],
+		"layerName": "Платформы",
+		"level":{
+			"relative": "mcd-station-infrastructures",
+			"order": 1
+		}
+	},
+	"source":{
+		"type": "geojson",
+		"data": {}
+	},
+	"minzoom": 17,
+	"paint": {
+		"fill-extrusion-color": "#ffbb33",
+		"fill-extrusion-height": 1,
+		"fill-extrusion-base": 0,
+		"fill-extrusion-opacity": 0.8
+	}
+}

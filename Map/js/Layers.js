@@ -12,7 +12,7 @@ function LayerService(map){
 				var jsonObj = JSON.parse(layersJson);
 				
 				$.each(jsonObj.layers,function(index, value){
-					self._map.addLayer(value);
+					addLayer(value)
 					addEvents(value.id);
 				});
 				
@@ -24,6 +24,19 @@ function LayerService(map){
 	
 	function getMainJson(jsonElementId){
 		return $('#' + jsonElementId).html();
+	}
+	
+	function addLayer(value){
+		if (value.metadataOnly){
+			var layer = self._map.getLayer(value.id);
+			
+			if(layer){
+				layer.metadata = value.metadata;
+			}
+		}
+		else{
+			self._map.addLayer(value);
+		}
 	}
 	
 	function addEvents(layerId){

@@ -1,0 +1,30 @@
+{
+	"id": "mcd-roads",
+	"type": "line",
+	"metadata":{
+		"elements": [],
+		"parentLayers": ["mcd"],
+		"childLayers": ["mcd-road-speedInfos"],
+		"layerName": "Дороги",
+		"level":{
+			"relative": "mcd",
+			"order": 2
+		}
+	},
+	"source":{
+		"type": "geojson",
+		"data":{},
+	}
+	"layout": {
+		"line-join": "round",
+		"line-cap": "round"
+	},
+	"minzoom": 8,
+	"paint": {
+		"line-color": { "type": "identity", "property": "color" },
+		"line-width": {
+			"base": 2,
+			"stops": [[10, 3], [15, 2]]
+		}
+	}
+}
