@@ -143,20 +143,21 @@
 	margin: 5px 0 0 10px;
 	width: 10px;
 	height: 10px;
-	background-color: red;
 }
+
+.main-control .layer-toggle{
+	background-color: #dcdfe6;
+}
+.main-control .layer-toggle.shown{
+	background-color: #526286;
+}
+
 .main-control .element-toggle{
 	border-radius: 5px;
-	background-color: #ff002a;
+	background-color: #cfdacb;
 }
-
-.main-control .layer-toggle.shown{
-	background-color: green;
-}
-
-
 .main-control .element-toggle.shown{
-	background-color: #ffd500;
+	background-color: #587849;
 }
 
 .main-control .layer-name.active{
