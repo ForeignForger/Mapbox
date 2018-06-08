@@ -26,7 +26,7 @@
 			"controlPanels":[
 				{
 					"position": "top-right",
-					"panelHtml": "<div class='control-panel top-right'><div class='toggle control-panel-toggle' data-bind='click: toggleControlPanel, css: { open: IsOpen() }'></div><div class='control-area'><div class= 'head'><div><div class='control-name' data-bind='click: toggleControlList'><span data-bind='text:selectedControl().controlName'></span></div><ul class='control-list' data-bind='foreach: controls, css: {open: IsControlListOpen}'><!-- ko if: $parents[0].selectedControl().controlId != controlId--><li class='control-list-element' data-bind='text: controlName, click: $parents[0].selectControl.bind($element[0], controlId)'></option><!-- /ko --></ul></div></div><div class='body' data-bind='with: selectedControl'></div></div></div>",
+					"panelHtml": "<div class='control-panel top-right' onselectstart='return false'><div class='toggle control-panel-toggle' data-bind='click: toggleControlPanel, css: { open: IsOpen() }'></div><div class='control-area'><div class= 'head'><div><div class='control-name' data-bind='click: toggleControlList'><span data-bind='text:selectedControl().controlName'></span></div><ul class='control-list' data-bind='foreach: controls, css: {open: IsControlListOpen}'><!-- ko if: $parents[0].selectedControl().controlId != controlId--><li class='control-list-element' data-bind='text: controlName, click: $parents[0].selectControl.bind($element[0], controlId)'></option><!-- /ko --></ul></div></div><div class='body' data-bind='with: selectedControl'></div></div></div>",
 					"controls":	[
 							{
 								"controlId": "main-control",
