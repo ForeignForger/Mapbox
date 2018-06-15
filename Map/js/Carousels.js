@@ -5,6 +5,7 @@ function initializeCaroulsel(elementId){
 		loop: true,
 		margin: 0,
 		nav: false,
-		items: 1
+		items: 1,
+		dots: false
 	});
 }

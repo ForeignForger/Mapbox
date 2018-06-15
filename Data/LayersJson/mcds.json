@@ -13,11 +13,11 @@
 		"elements": [
 			{
 				"elementId": "mcd1",
-				"elementName": "Старый МЦД"
+				"elementName": "МЦД1, Одинцово — Лобня"
 			}, 
 			{
 				"elementId": "mcd2",
-				"elementName": "Новый МЦД"
+				"elementName": "МЦД2, Нахабино — Подольск"
 			}
 		],
 		"parentLayers": [],

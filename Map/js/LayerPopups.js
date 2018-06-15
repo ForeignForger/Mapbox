@@ -63,6 +63,4 @@ function LayerPopupService(layerService){
 			return result;
 		}
 	};
-	
-	
 }
