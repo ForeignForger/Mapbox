@@ -20,7 +20,6 @@
 				"elementName": "МЦД2, Нахабино — Подольск"
 			}
 		],
-		"parentLayers": [],
 		"childLayers": ["mcd-roads", "mcd-stations", "moscow"],
 		"popupHtml": "",
 		"layerName": "Схема Московских МЦД",

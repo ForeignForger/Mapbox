@@ -1,6 +1,5 @@
-function LayerPopupService(layerService){
+function LayerPopupService(){
 	var self = this;
-	var layerService = layerService;
 	var layerPopups = {};
 	
 	self.getLayerPopup = function(layerId, popupData){
@@ -8,7 +7,7 @@ function LayerPopupService(layerService){
 			return new layerPopups[layerId](popupData);
 		}
 		
-		popupData.initialize = popupData.initialize || defaultInitialize;
+		popupData.initialize = defaultInitialize;
 		return popupData;
 	}
 	
