@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace MapDAL.Providers
 {
-    class SqlMapDAL
+    public class SqlMapDAL: IMapDAL
     {
+        private MapDALHelper helper;
+
+        public SqlMapDAL(MapDALHelper helper)
+        {
+            this.helper = helper;
+        }
+
+        public string Test()
+        {
+            return "hello, world!";
+        }
     }
 }

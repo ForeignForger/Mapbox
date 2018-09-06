@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using MapDAL;
 
 namespace WebService.Controllers
 {
@@ -12,7 +13,10 @@ namespace WebService.Controllers
         // GET: api/Layers
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            var factory = new MapDALFactory();
+            var dal = factory.Create();
+            var str = dal.Test();
+            return new string[] { "value1", "value2", str };
         }
 
         // GET: api/Layers/5

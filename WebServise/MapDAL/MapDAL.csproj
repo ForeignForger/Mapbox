@@ -49,7 +49,6 @@
     <Compile Include="IMapDAL.cs" />
     <Compile Include="MapDALHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\DefaultMapDAL.cs" />
     <Compile Include="Providers\SqlMapDAL.cs" />
   </ItemGroup>
   <ItemGroup />

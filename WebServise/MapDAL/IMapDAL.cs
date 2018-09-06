@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MapDAL
 {
-    class IMapDAL
+    public interface IMapDAL
     {
+        string Test();
     }
 }
