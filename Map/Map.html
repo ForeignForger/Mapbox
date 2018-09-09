@@ -11,14 +11,7 @@
 <body>
 	<div id='mapbox' class="map">
 	</div>
-	<script src='js/Filters.js'></script>
-	<script src='js/Layers.js'></script>
-	<script src='js/ControlPanels.js'></script>
-	<script src='js/Controls.js'></script>
 	<script src='js/Mapbox.js'></script>
-	<script src='js/Images.js'></script>
-	<script src='js/Carousels.js'></script>
-	<script src='js/LayerPopups.js'></script>
 	<script type="application/json" id="mapbox-layers-json">
 	{
 		"info": {
@@ -53,9 +46,8 @@
 	}
 	</script>
 	<script>
-		var settings = {containerId: "mapbox", layersJsonContainerId: "mapbox-layers-json"};
 		var mapbox = new Mapbox();
-		mapbox.run(settings);
+		mapbox.run("mapbox");
 	</script>
 
 	</body>
