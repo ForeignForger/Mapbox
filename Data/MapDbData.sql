@@ -22,7 +22,7 @@ DELETE FROM map.ControlPanels;
 DBCC CHECKIDENT ('map.ControlPanels', RESEED, 0); 
 
 --layers
-INSERT INTO map.Layers (StringId, MetadataOnly, [Type], Source, popUpTemplate, LayerName, [Order])
+INSERT INTO map.Layers (StringId, MetadataOnly, [Type], Source, PopupTemplate, LayerName, [Order])
 VALUES ('mcd-stations', 1, NULL, NULL, N'<div class=''popup station-popup''><div class=''popup-header''><div class=''popup-icon''><img data-bind=''attr: {src: icon.url}''></img></div><div class=''popup-title'' data-bind=''text: title''></div></div><div class=''popup-body''><div id=''mcd-stations-carousel'' class=''owl-carousel images'' data-bind=''foreach: images''><div class= ''image''><img data-bind=''attr: { src: url}''></img></div></div><div class=''time-table''><div class=''time-table-header''><div class=''column column-title''>Маршрут</div><div class=''column column-title''>Промежутки</div></div><div class=''list'' data-bind=''foreach: timeTable.list''><div class=''row''><div class=''column column-value'' data-bind=''text: train''></div><div class=''column column-value'' data-bind=''text: timeSpan + measure ''></div></div></div></div><div class=''info'' data-bind=''text: info''></div></div></div>',
 	  'Станции', 3),
 	  ('mcd-station-names', 1, NULL, NULL, NULL, N'Название станции', 2),

@@ -14,10 +14,5 @@ namespace MapDAL.Providers
         {
             this.helper = helper;
         }
-
-        public string Test()
-        {
-            return "hello, world!";
-        }
     }
 }
