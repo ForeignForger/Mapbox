@@ -1,12 +1,12 @@
 --!!!Warning!!!
 --EXISTING DATA IN DATABASE WILL BE DELETED AND REPLACED BY THIS SCRIPT
-
 USE MapboxDb;
 GO 
 BEGIN TRANSACTION T
 DELETE FROM map.LayerElements;
 
 DELETE FROM map.[Elements]
+DBCC CHECKIDENT ('map.Elements', RESEED, 0); 
 
 DELETE FROM map.LayerChildLayers;
 
@@ -27,16 +27,16 @@ VALUES ('mcd-stations', 1, NULL, NULL, N'<div class=''popup station-popup''><div
 	  'Станции', 3),
 	  ('mcd-station-names', 1, NULL, NULL, NULL, N'Название станции', 2),
 	  ('mcd-station-platforms', 1, NULL, NULL, NULL, N'Платформы', 1),
-	  ('mcd-station-infrastructures', 1, 'symbol', N'{"type": "geojson","data": {"type": "FeatureCollection","features": []}}', NULL, N'Инфраструктура', 1),
+	  ('mcd-station-infrastructures', 0, 'symbol', N'{"type": "geojson","data": {"type": "FeatureCollection","features": []}}', NULL, N'Инфраструктура', 1),
 	  ('mcd-roads', 1, NULL, NULL, NULL, N'Дороги', 2),
 	  ('moscow', 1, NULL, NULL, NULL, N'Административные округа', 0),
-	  ('mcd', 1, 'symbol', N'{"type": "geojson","data": {"type": "FeatureCollection","features": []}}', NULL, N'Схема Московских МЦД', 0);
+	  ('mcd', 0, 'symbol', N'{"type": "geojson","data": {"type": "FeatureCollection","features": []}}', NULL, N'Схема Московских МЦД', 0);
 
 --childLayers
-INSERT INTO map.LayerChildLayers (LayerId, ChildLayerStringId)
-VALUES (7, 'mcd-roads'), (7, 'mcd-moscow'), (7, 'mcd-station'),
-	(1, 'mcd-station-names'), (1, 'mcd-station-infrastructures'),
-	(4, 'mcd-station-platforms');
+INSERT INTO map.LayerChildLayers (LayerId, ChildLayerId)
+VALUES (7, 5), (7, 6), (7, 1),
+	(1, 2), (1, 4),
+	(4, 3);
 
 --Elements
 INSERT INTO map.[Elements] (Id, Name)
@@ -68,3 +68,6 @@ INSERT INTO map.ControlPanelControls (ControlPanelId, ControlId)
 VALUES (1, 1), (1, 2);
 
 COMMIT TRANSACTION T
+
+SELECT Id, StringId, MetadataOnly, [Type], Source, PopupTemplate, LayerName, [Order] 
+                            FROM map.Layers
