@@ -10,9 +10,6 @@ namespace WebService
     {
         public static void Register(HttpConfiguration config)
         {
-            // Конфигурация и службы веб-API
-
-            // Маршруты веб-API
             config.MapHttpAttributeRoutes();
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
 

@@ -8,19 +8,27 @@ using System.Web.Http;
 using MapDAL;
 using Newtonsoft.Json;
 using System.Net.Http.Formatting;
+using WebService.Repositories;
+using WebService.Models;
 
 namespace WebService.Controllers
 {
     public class InfoController : ApiController
     {
+        private MapRepository mapRepository;
+
+        public InfoController()
+        {
+            mapRepository = new MapRepository();
+        }
+
         public HttpResponseMessage Get()
-        {        
-            var factory = new MapDALFactory();
-            var dal = factory.Create();
-            var layers = dal.GetLayers();
-            var controlPanels = dal.GetControlPanels();
-            var json = JsonConvert.SerializeObject(layers);
-            return Request.CreateResponse(HttpStatusCode.OK, "{ app: \"Everything works as expected\"}", new MediaTypeHeaderValue("application/json"));
+        {
+            var layers = mapRepository.GetLayers();
+            var panels = mapRepository.GetControlPanels();
+            var info = new InfoModel(layers, panels);
+            var json = JsonConvert.SerializeObject(info);
+            return Request.CreateResponse(HttpStatusCode.OK, json , new MediaTypeHeaderValue("application/json"));
         }
     }
 }

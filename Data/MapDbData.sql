@@ -6,7 +6,6 @@ BEGIN TRANSACTION T
 DELETE FROM map.LayerElements;
 
 DELETE FROM map.[Elements]
-DBCC CHECKIDENT ('map.Elements', RESEED, 0); 
 
 DELETE FROM map.LayerChildLayers;
 
@@ -57,17 +56,14 @@ INSERT INTO map.Controls (StringId, ControlTemplate, ControlName, ControlData)
 VALUES ('main-control', 
 	N'<div class=''main-control''><div class=''control-head''><div class=''toggle layer-toggle'' data-bind=''css: { shown: layers[mainLayer.layerId].IsLayerShown()}, click: showHideLayer.bind(null, $data, mainLayer.layerId)''></div><span class=''layer-name'' data-bind=''text: mainLayer.layerName, click: showHideLayerMenu.bind(null, $data, mainLayer.layerId), css: {active: layers[mainLayer.layerId].isLayerActive()}''></span></div><div class=''control-body'' data-bind=''visible: layers[mainLayer.layerId].IsLayerShown() && layers[mainLayer.layerId].IsLayerMenuShown()''><ul class=''element-list'' data-bind=''foreach: mainLayer.elements''><li class=''element''><div class=''toggle element-toggle'' data-bind=''css: { shown:  $parent.layers[$parent.mainLayer.layerId].elements[elementId].IsElementShown() }, click: $parent.toggleElementFilter.bind(null, $parent, elementId, $parent.mainLayer.layerId)''></div><span class=''element-name'' data-bind=''text: elementName''></span></li></ul><div class=''layer-list'' data-bind=''foreach: mainLayer.childLayerObjects''><div class=''layer''><div class=''layer-head''><div class=''toggle layer-toggle'' data-bind=''css: { shown: $parent.layers[layerId].IsLayerShown() }, click: $parent.showHideLayer.bind(null, $parent, layerId)''></div><span class=''layer-name'' data-bind=''text: layerName, click: $parent.showHideLayerMenu.bind(null, $parent, layerId), css: {active:  $parent.layers[layerId].isLayerActive()}''></span></div><div class=''layer-body'' data-bind=''visible: $parent.layers[layerId].IsLayerShown() && $parent.layers[layerId].IsLayerMenuShown()''><ul class=''child-layer-list'' data-bind=''foreach: childLayerObjects''><li class=''child-layer''><div class=''toggle layer-toggle'' data-bind=''css: { shown: $parents[1].layers[layerId].IsLayerShown() }, click: $parents[1].showHideLayer.bind(null, $parents[1], layerId)''></div><span class=''layer-name'' data-bind=''text: layerName''></span></li></ul></div></div></div></div></div>',
 	N'Главный котроллер',
-	N'{layerId": "mcd"}'),
+	N'{"layerId": "mcd"}'),
 	('time-line-control', 
 	N'<div class=''time-line-control''><div class=''container'' data-bind=''style: {height: controlHeight}''><input class=''time-input'' type=''range'' min=''0'' step=''0.01'' data-bind=''value: currentStep, event: { change: changeYear.bind($data) },attr: {max: years().length - 1}, style: {width: controlHeight}''/><div class=''year-list'' data-bind=''foreach: years, style: {left: -1 * ((years().length - 2) * oneYearHeight)}''><div class=''year'' data-bind=''text: value, css: { active: IsSelected}''></div></div></div></div>',
 	N'Фильтрация по времени',
-	N'{layerId": "mcd", "years": [2008, 2009, 2010, 2011]}');
+	N'{"layerId": "mcd", "years": [2008, 2009, 2010, 2011]}');
 
 --controlPanelControls
 INSERT INTO map.ControlPanelControls (ControlPanelId, ControlId)
 VALUES (1, 1), (1, 2);
 
 COMMIT TRANSACTION T
-
-SELECT Id, StringId, MetadataOnly, [Type], Source, PopupTemplate, LayerName, [Order] 
-                            FROM map.Layers

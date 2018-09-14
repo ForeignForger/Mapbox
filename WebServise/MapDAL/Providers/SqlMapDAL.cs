@@ -108,7 +108,7 @@ namespace MapDAL.Providers
         {
             string query = string.Format(@"SELECT l.Id [Id], l.StringId [StringId], l.MetadataOnly [MetadataOnly], l.[Type] [Type], l.Source [Source], l.PopupTemplate [PopupTemplate], l.LayerName [LayerName], l.[Order] [Order]
                             FROM map.Layers l
-                            JOIN map.LayerChildLayers lcl ON l.Id = lcl.LayerId AND lcl.LayerId = @LayerId");
+                            JOIN map.LayerChildLayers lcl ON l.Id = lcl.ChildLayerId AND lcl.LayerId = @LayerId");
 
             using (var connection = helper.CreateConnection() as SqlConnection)
             {
