@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Control.cs" />
+    <Compile Include="Entities\ControlPanel.cs" />
     <Compile Include="Entities\Element.cs" />
     <Compile Include="Entities\Layer.cs" />
     <Compile Include="Entities\MapDALEntity.cs" />

@@ -13,10 +13,16 @@ namespace MapDAL.Entities
 
         public string Name { get; set; }
 
-        public override void MapData (DbDataReader reader)
+        public override bool IsEqualId(DbDataReader reader, string prefix)
         {
-            this.Id = ConvertToString(reader["id"]);
-            this.Name = ConvertToString(reader["Name"]);
+            var objId = ReadField<string>(reader, "Id", prefix);
+            return this.Id == objId;
+        }
+
+        protected override void FillFields (DbDataReader reader, string prefix = "")
+        {
+            this.Id = ReadField<string>(reader, "Id", prefix);
+            this.Name = ReadField<string>(reader, "Name", prefix);
         }
     }
 }

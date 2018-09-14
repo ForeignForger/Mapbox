@@ -9,6 +9,8 @@ namespace MapDAL.Entities
 {
     public class Layer: MapDALEntity
     {
+        public const string prefix = "layer";
+
         public int Id { get; set; }
 
         public string StringId { get; set; }
@@ -25,16 +27,25 @@ namespace MapDAL.Entities
 
         public int Order { get; set; }
 
-        public override void MapData(DbDataReader reader)
+        public List<Layer> ChildLayers { get; set; }
+
+        public List<Element> Elements { get; set; }
+
+        public override bool IsEqualId(DbDataReader reader, string prefix)
         {
-            this.Id = (int)reader["Id"];
-            this.StringId = (string)reader["StringId"];
-            this.MetadataOnly = (bool)reader["MetadataOnly"];//100% wrong maybe need to convert to bit and then to bool, dunno
-            this.Type = ConvertToString(reader["Type"]);
-            this.Source = ConvertToString(reader["Source"]);
-            this.PopupTemplate = ConvertToString(reader["PopupTemplate"]);
-            this.LayerName = (string)reader["LayerName"];
-            this.Order = (int)reader["Order"];
+            var objId = ReadField<int>(reader, "Id", prefix);
+            return this.Id == objId;
+        }
+
+        protected override void FillFields(DbDataReader reader, string prefix = "")
+        {
+            this.Id = ReadField<int>(reader, "Id", prefix);
+            this.StringId = ReadField<string>(reader, "StringId", prefix);
+            this.MetadataOnly = ReadField<bool>(reader, "MetadataOnly", prefix);
+            this.Source = ReadNullbaleString(reader, "Source", prefix);
+            this.PopupTemplate = ReadNullbaleString(reader, "PopupTemplate", prefix);
+            this.LayerName = ReadField<string>(reader, "LayerName", prefix);
+            this.Order = ReadField<int>(reader, "Order", prefix);
         }
     }
 }
