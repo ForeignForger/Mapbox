@@ -42,6 +42,7 @@ namespace MapDAL.Entities
             this.Id = ReadField<int>(reader, "Id", prefix);
             this.StringId = ReadField<string>(reader, "StringId", prefix);
             this.MetadataOnly = ReadField<bool>(reader, "MetadataOnly", prefix);
+            this.Type = ReadNullbaleString(reader, "Type", prefix);
             this.Source = ReadNullbaleString(reader, "Source", prefix);
             this.PopupTemplate = ReadNullbaleString(reader, "PopupTemplate", prefix);
             this.LayerName = ReadField<string>(reader, "LayerName", prefix);

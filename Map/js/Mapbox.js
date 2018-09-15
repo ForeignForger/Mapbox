@@ -3,11 +3,11 @@ function Mapbox(){
 	var map = null;	
 	var settings = {
 		containerId: 'mapbox',
-		layersJsonContainerId: 'mapbox-layers-json',
 		style: 'mapbox://styles/groond/cji09walv4c4g2sla9irb1790',
 		zoom: 10,
 		center: [37.618423, 55.751244],
-		accessToken: 'pk.eyJ1IjoiZ3Jvb25kIiwiYSI6ImNqZHZ3dXpwdzA1cmkzMHFsa2N5OHRkZjMifQ.kxcUljYPNnJF35paLmZKSw',
+        accessToken: 'pk.eyJ1IjoiZ3Jvb25kIiwiYSI6ImNqZHZ3dXpwdzA1cmkzMHFsa2N5OHRkZjMifQ.kxcUljYPNnJF35paLmZKSw',
+        serverUrl:"http://localhost/api",
 	};
 	
 
@@ -38,25 +38,68 @@ function Mapbox(){
 	
 	function init(){
 		if(map){
-			var layerService = initLayerService();
-			addControls(layerService);
+			var onSuccess = function(data){
+				var layerService = initLayerService(data.layers);
+				addControls(data.controlPanels, layerService);
+			};
+			
+			var onFail = function(data){
+				console.log('hmm, something have gone wrong')
+			};
+			
+			var webService = new services.webService(settings.serverUrl);
+			webService.LoadMapData(onSuccess, onFail);
 		}
 	}
 	
-	function initLayerService(){
+	function initLayerService(layers){
 		var layerService = new services.layerService(map, new services.filterService(), new services.layerPopupService(new services.imagesService()));
-		layerService.init(settings.layersJsonContainerId);
+		layerService.init(layers);
 		return layerService;
 	}
 	
-	function addControls(layerService){
+	function addControls(controlPanelsData,layerService){
 		map.addControl(new mapboxgl.FullscreenControl(), "bottom-right");
 		map.addControl(new mapboxgl.NavigationControl(), "top-left");
-		var controlPanelService = new services.controlPanelService(map, layerService.getInfo(), new services.controlService(map, layerService, new services.filterService()));
+		var controlPanelService = new services.controlPanelService(map, controlPanelsData, new services.controlService(map, layerService, new services.filterService()));
 		controlPanelService.addControlPanelsAtMap();
 	}
 	
 	var services = {
+		webService: function (serverUrl){
+			var webS = this;
+			
+			webS.urls = {
+				info: 'Info',
+				server: serverUrl
+			}
+			
+			webS.LoadMapData = function(onSuccess, onFail){
+				var url = getUrl(webS.urls.info);
+				
+				$.ajax({
+					url: url,
+					type: 'GET',
+					success: function (response){
+						var data = JSON.parse(response);
+						
+						if (onSuccess){
+							onSuccess(data);
+						}
+					},
+					error: function(response){
+						if (onFail){
+							onFail(response);
+						}
+					}
+				});
+			}
+			
+			function getUrl(part){
+				return webS.urls.server + '/' + part;
+			}
+		},
+		
 		imagesService: function ImagesService(){
 			var imgS = this;
 			
@@ -84,21 +127,14 @@ function Mapbox(){
 			var info = null;
 			layerS._map = map;
 			
-			layerS.init = function(jsonElementId){
+			layerS.init = function(layers){
 				if (layerS._map){
-					var layersJson = getMainJson(jsonElementId);
+					$.each(layers,function(index, value){
+						addLayer(value)
+						addEvents(value.id);
+					});
 					
-					if (layersJson){
-						var jsonObj = JSON.parse(layersJson);
-						
-						$.each(jsonObj.layers,function(index, value){
-							addLayer(value)
-							addEvents(value.id);
-						});
-						
-						updateLayersPosition(jsonObj.layers);
-						info = jsonObj.info;
-					}
+					updateLayersPosition(layers);
 				}
 			};
 			
@@ -106,10 +142,6 @@ function Mapbox(){
 				var clone = $.extend({}, info);
 				return clone; 
 			};
-			
-			function getMainJson(jsonElementId){
-				return $('#' + jsonElementId).html();
-			}
 			
 			function addLayer(value){
 				if (value.metadataOnly){
@@ -164,8 +196,8 @@ function Mapbox(){
 				}
 			}
 			
-			function updateLayersPosition(layersJson){
-				var roots = findRoots(layersJson);
+			function updateLayersPosition(layers){
+				var roots = findRoots(layers);
 				
 				for (var i = 0; i < roots.length; i++){
 					var order = layerS.getLayersOrder(roots[i]);
@@ -178,12 +210,12 @@ function Mapbox(){
 				}
 			}
 			
-			function findRoots(layersJson){
+			function findRoots(layers){
 				var roots = [];
 				
-				for (var i = 0; i < layersJson.length; i++){
-					if (!layersJson[i].metadata.parentLayers || !layersJson[i].metadata.parentLayers.length){
-						roots.push(layersJson[i].id);
+				for (var i = 0; i < layers.length; i++){
+					if (!layers[i].metadata.parentLayers || !layers[i].metadata.parentLayers.length){
+						roots.push(layers[i].id);
 					}
 				}
 				
@@ -200,8 +232,6 @@ function Mapbox(){
 					obj.childLayers.sort(function(a, b){
 						var aObj = layerS.getLayerObject(a);
 						var bObj = layerS.getLayerObject(b);
-						aObj = aObj && aObj.level ? aObj.level : undefined;
-						bObj = bObj && bObj.level ? bObj.level : undefined;
 						
 						if (aObj && !bObj){
 							return 1;
@@ -215,21 +245,22 @@ function Mapbox(){
 							return 0;
 						}
 						
-						if (aObj.order){
-							if(bObj.order){
-								if (aObj.order > bObj.order){
+						if (aObj.layerOrder){
+							if(bObj.layerOrder){
+								if (aObj.layerOrder > bObj.layerOrder){
 									return 1;
 								}
-								if (aObj.order < bObj.order){
+								if (aObj.layerOrder < bObj.layerOrder){
 									return -1;
 								}
+								
 								return 0;
 							}
 							
 							return 1;
 						}
 						
-						if (bObj.order){
+						if (bObj.layerOrder){
 							return -1;
 						}
 						
@@ -461,10 +492,10 @@ function Mapbox(){
 			};
 		},
 		
-		controlPanelService: function ControlPanelService(map, info, controlService){
+		controlPanelService: function ControlPanelService(map, controlPanelsData, controlService){
 			var controlPS = this;
 			controlPS._map = map;
-			controlPS.info = info;
+			controlPS.controlPanelsData = controlPanelsData;
 			controlPS.controlPanels = {};
 			controlPS.controlService = controlService;
 			
@@ -477,7 +508,7 @@ function Mapbox(){
 			}
 			
 			function initControlPanels(){
-				$.each(controlPS.info.controlPanels, function(index, controlPanel){
+				$.each(controlPS.controlPanelsData, function(index, controlPanel){
 					if (!controlPS.controlPanels[controlPanel.position]){
 						controlPS.controlPanels[controlPanel.position] = new ControlPanel(controlPanel);
 						$.each(controlPanel.controls, function (index, controlInfo){

@@ -10,6 +10,7 @@ namespace WebService
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
             config.MapHttpAttributeRoutes();
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
 

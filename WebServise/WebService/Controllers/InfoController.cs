@@ -10,9 +10,11 @@ using Newtonsoft.Json;
 using System.Net.Http.Formatting;
 using WebService.Repositories;
 using WebService.Models;
+using System.Web.Http.Cors;
 
 namespace WebService.Controllers
 {
+    [EnableCors(origins: "*", headers: "GET", methods: "*")]
     public class InfoController : ApiController
     {
         private MapRepository mapRepository;

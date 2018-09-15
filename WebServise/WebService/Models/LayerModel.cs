@@ -17,7 +17,7 @@ namespace WebService.Models
         [JsonProperty("type")]
         public string Type { get; set; }
 
-        [JsonProperty(PropertyName = "sourse")]
+        [JsonProperty(PropertyName = "source")]
         [JsonConverter(typeof(RawJsonConverter))]
         public string Source { get; set; }
 
