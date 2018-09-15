@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MapDAL.Entities;
+using Newtonsoft.Json;
 
 namespace WebService.Models
 {
     public class ControlPanelModel
     {
+        [JsonProperty(PropertyName = "position")]
         public string Position { get; set; }
 
+        [JsonProperty(PropertyName = "panelHtml")]
         public string PanelTemplate { get; set; }
 
+        [JsonProperty(PropertyName = "controls")]
         public List<ControlModel> Controls { get; set; }
 
-        public static explicit operator ControlPanelModel(ControlPanel panel)
+        public static explicit operator ControlPanelModel(MapDAL.Entities.ControlPanel panel)
         {
             var model = new ControlPanelModel()
             {

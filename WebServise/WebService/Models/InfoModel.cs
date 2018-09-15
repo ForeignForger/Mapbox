@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace WebService.Models
 {
@@ -18,8 +19,10 @@ namespace WebService.Models
             this.ControlPanels = panels;
         }
 
+        [JsonProperty(PropertyName = "layers")]
         public List<LayerModel> Layers { get; set; }
 
+        [JsonProperty(PropertyName = "controlPanels")]
         public List<ControlPanelModel> ControlPanels { get; set; }
     }
 }

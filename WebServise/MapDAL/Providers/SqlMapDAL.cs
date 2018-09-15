@@ -31,7 +31,6 @@ namespace MapDAL.Providers
                 command.CommandText = query;
                 connection.Open();
                 var reader = command.ExecuteReader();
-                //connection.Close();
                 while (reader.Read())
                 {
                     var layer = new Layer();
