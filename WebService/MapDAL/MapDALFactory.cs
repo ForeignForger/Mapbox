@@ -32,21 +32,31 @@ namespace MapDAL
         private IMapDAL CreateInstance(string connectionName, string providerName)
         {
             var provider = config.Providers[providerName];
-            var helper = new MapDALHelper(connectionName, provider.Name);
             var constructor = GetConstructor(Type.GetType(provider.Type));
-            var instance = constructor.Invoke(new[] { helper });
+            object[] parameters = null;
+
+            if (constructor.GetParameters().Count() > 0)
+            {
+                var helper = new MapDALHelper(connectionName, provider.Name);
+                parameters = new[] { helper };
+            }
+            var instance = constructor.Invoke(parameters);
             return (IMapDAL)instance;
         }
 
         private ConstructorInfo GetConstructor(Type type)
         {
-            var constructor = type.GetConstructors().Where((c) =>
+            var constructors = type.GetConstructors().Where((c) =>
             {
                 var parameters = c.GetParameters();
-                return parameters.Count() == 1 && parameters.First().ParameterType == typeof(MapDALHelper);
-            }).First();
+                return parameters.Count() == 0 || parameters.Count() == 1 && parameters.First().ParameterType == typeof(MapDALHelper);
+            }).OrderBy((c) =>
+            {
+                var parameters = c.GetParameters();
+                return -parameters.Count();
+            });
 
-            return constructor;
+            return constructors.First();
         }
     }
 }

@@ -12,39 +12,6 @@
 	<div id='mapbox' class="map">
 	</div>
 	<script src='js/Mapbox.js'></script>
-	<script type="application/json" id="mapbox-layers-json">
-	{
-		"info": {
-			"controlPanels":[
-				{
-					"position": "top-right",
-					"panelHtml": "<div class='control-panel top-right' onselectstart='return false'><div class='toggle control-panel-toggle' data-bind='click: toggleControlPanel, css: { open: IsOpen() }'></div><div class='control-area'><div class= 'head'><div><div class='control-name' data-bind='click: toggleControlList'><span data-bind='text:selectedControl().controlName'></span></div><ul class='control-list' data-bind='foreach: controls, css: {open: IsControlListOpen}'><!-- ko if: $parents[0].selectedControl().controlId != controlId--><li class='control-list-element' data-bind='text: controlName, click: $parents[0].selectControl.bind($element[0], controlId)'></option><!-- /ko --></ul></div></div><div class='body' data-bind='with: selectedControl'></div></div></div>",
-					"controls":	[
-							{
-								"controlId": "main-control",
-								"controlHtml": "<div class='main-control'><div class='control-head'><div class='toggle layer-toggle' data-bind='css: { shown: layers[mainLayer.layerId].IsLayerShown()}, click: showHideLayer.bind(null, $data, mainLayer.layerId)'></div><span class='layer-name' data-bind='text: mainLayer.layerName, click: showHideLayerMenu.bind(null, $data, mainLayer.layerId), css: {active: layers[mainLayer.layerId].isLayerActive()}'></span></div><div class='control-body' data-bind='visible: layers[mainLayer.layerId].IsLayerShown() && layers[mainLayer.layerId].IsLayerMenuShown()'><ul class='element-list' data-bind='foreach: mainLayer.elements'><li class='element'><div class='toggle element-toggle' data-bind='css: { shown:  $parent.layers[$parent.mainLayer.layerId].elements[elementId].IsElementShown() }, click: $parent.toggleElementFilter.bind(null, $parent, elementId, $parent.mainLayer.layerId)'></div><span class='element-name' data-bind='text: elementName'></span></li></ul><div class='layer-list' data-bind='foreach: mainLayer.childLayerObjects'><div class='layer'><div class='layer-head'><div class='toggle layer-toggle' data-bind='css: { shown: $parent.layers[layerId].IsLayerShown() }, click: $parent.showHideLayer.bind(null, $parent, layerId)'></div><span class='layer-name' data-bind='text: layerName, click: $parent.showHideLayerMenu.bind(null, $parent, layerId), css: {active:  $parent.layers[layerId].isLayerActive()}'></span></div><div class='layer-body' data-bind='visible: $parent.layers[layerId].IsLayerShown() && $parent.layers[layerId].IsLayerMenuShown()'><ul class='child-layer-list' data-bind='foreach: childLayerObjects'><li class='child-layer'><div class='toggle layer-toggle' data-bind='css: { shown: $parents[1].layers[layerId].IsLayerShown() }, click: $parents[1].showHideLayer.bind(null, $parents[1], layerId)'></div><span class='layer-name' data-bind='text: layerName'></span></li></ul></div></div></div></div></div>",
-								"controlName": "Главный котроллер",
-								"controlData":{
-									"layerId": "mcd"
-								}
-							},
-							{
-								
-								"controlId": "time-line-control",
-								"controlHtml": "<div class='time-line-control'><div class='container'  data-bind='style: {height: controlHeight}'><input class='time-input' type='range' min='0' step='0.01' data-bind='value: currentStep, event: { change: changeYear.bind($data) },attr: {max: years().length - 1}, style: {width: controlHeight}'/><div class='year-list' data-bind='foreach: years, style: {left: -1 * ((years().length - 2) * oneYearHeight)}'><div class='year' data-bind='text: value, css: { active: IsSelected}'></div></div></div></div>",
-								"controlName": "Фильтрация по времени",
-								"controlData":{
-									"layerId": "mcd",
-									"years": [2008, 2009, 2010, 2011]
-								}
-							}
-						]
-				}
-			]
-		},
-		"layers": [{"id":"mcd-stations","metadataOnly":true,"metadata":{"elements":[],"parentLayers":["mcd"],"childLayers":["mcd-station-names","mcd-station-infrastructures"],"popupHtml":"<div class='popup station-popup'><div class='popup-header'><div class='popup-icon'><img data-bind='attr: {src: icon.url}'></img></div><div class='popup-title' data-bind='text: title'></div></div><div class='popup-body'><div id='mcd-stations-carousel' class='owl-carousel images' data-bind='foreach: images'><div class= 'image'><img data-bind='attr: { src: url}'></img></div></div><div class='time-table'><div class='time-table-header'><div class='column column-title'>Маршрут</div><div class='column column-title'>Промежутки</div></div><div class='list' data-bind='foreach: timeTable.list'><div class='row'><div class='column column-value' data-bind='text: train'></div><div class='column column-value' data-bind='text: timeSpan + measure '></div></div></div></div><div class='info' data-bind='text: info'></div></div></div>","layerName":"Станции","level":{"relative":"mcd","order":3}}},{"id":"mcd-station-names","metadataOnly":true,"metadata":{"elements":[],"parentLayers":["mcd-stations"],"childLayers":[],"layerName":"Название станции","level":{"relative":"mcd-stations","order":2}}},{"id":"mcd-station-platforms","metadataOnly":true,"metadata":{"elements":[],"parentLayers":["mcd-station-infrastructures"],"childLayers":[],"layerName":"Платформы","level":{"relative":"mcd-station-infrastructures","order":1}}},{"id":"mcd-station-infrastructures","type":"symbol","source":{"type":"geojson","data":{"type":"FeatureCollection","features":[]}},"metadata":{"elements":[],"parentLayers":["mcd-stations"],"childLayers":["mcd-station-platforms"],"layerName":"Инфраструктура","level":{"relative":"mcd-stations","order":1}}},{"id":"mcd-roads","metadataOnly":true,"metadata":{"elements":[],"parentLayers":["mcd"],"childLayers":["mcd-road-speedInfos"],"layerName":"Дороги","level":{"relative":"mcd","order":2}}},{"id":"moscow","metadataOnly":true,"metadata":{"elements":[],"parentLayers":["mcd"],"childLayers":[],"layerName":"Административные округа","level":{"relative":"mcd","order":0}}},{"id":"mcd","type":"symbol","source":{"type":"geojson","data":{"type":"FeatureCollection","features":[]}},"metadata":{"elements":[{"elementId":"mcd1","elementName":"МЦД1, Одинцово — Лобня"},{"elementId":"mcd2","elementName":"МЦД2, Нахабино — Подольск"}],"parentLayers":[],"childLayers":["mcd-roads","mcd-stations","moscow"],"popupHtml":"","layerName":"Схема Московских МЦД","level":{"order":0}}}]
-	}
-	</script>
 	<script>
 		var mapbox = new Mapbox();
 		mapbox.run("mapbox");

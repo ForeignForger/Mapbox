@@ -30,7 +30,7 @@ namespace WebService.Controllers
             var panels = mapRepository.GetControlPanels();
             var info = new InfoModel(layers, panels);
             var json = JsonConvert.SerializeObject(info);
-            return Request.CreateResponse(HttpStatusCode.OK, json , new MediaTypeHeaderValue("application/json"));
+            return Request.CreateResponse(HttpStatusCode.OK, json, new MediaTypeHeaderValue("application/json"));
         }
     }
 }
