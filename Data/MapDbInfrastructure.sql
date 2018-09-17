@@ -16,7 +16,8 @@ CREATE TABLE map.[Elements](Id VARCHAR(10) NOT NULL, Name NVARCHAR(50) NOT NULL,
 
 CREATE TABLE map.LayerElements(LayerId INT NOT NULL, ElementId VARCHAR(10) NOT NULL, 
 	PRIMARY KEY(LayerId, ElementId), 
-	FOREIGN KEY(LayerId) REFERENCES map.Layers(Id));
+	FOREIGN KEY(LayerId) REFERENCES map.Layers(Id),
+	FOREIGN KEY(ElementId) REFERENCES map.[Elements](Id));
 
 CREATE TABLE map.LayerChildLayers(LayerId INT NOT NULL, ChildLayerId INT NOT NULL,
 	PRIMARY KEY(LayerId, ChildLayerId),
