@@ -9,14 +9,26 @@ DELETE FROM map.[Elements]
 
 DELETE FROM map.LayerChildLayers;
 
+GO
+INSERT INTO map.Layers (StringId, MetadataOnly, [Type], Source, PopupTemplate, LayerName, [Order])
+VALUES	('test', 1, NULL, NULL, NULL, N'test', 1)
+GO
 DELETE FROM map.Layers;
 DBCC CHECKIDENT ('map.Layers', RESEED, 0); 
 
 DELETE FROM map.ControlPanelControls
 
+GO
+INSERT INTO map.Controls (StringId, ControlTemplate, ControlName, ControlData)
+VALUES ('test', N'test', N'test', N'{"test": 1}')
+GO
 DELETE FROM map.Controls;
 DBCC CHECKIDENT ('map.Controls', RESEED, 0); 
 
+GO
+INSERT INTO map.ControlPanels (Position, PanelTemplate)
+VALUES ('test', N'test')
+GO
 DELETE FROM map.ControlPanels;
 DBCC CHECKIDENT ('map.ControlPanels', RESEED, 0); 
 
